@@ -1,407 +1,526 @@
-<title>AI PM Roadmap — Samarth Rana</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>The 2027 PM Plan</title>
 <style>
   :root {
-    --ground:    #0F1419;
-    --surface:   #1A2332;
-    --surface-2: #223042;
-    --text:      #E8DFD0;
-    --dim:       #7A8A99;
-    --dimmer:    #3E4E5E;
-    --accent:    #F5A623;
-    --teal:      #3DBFB8;
-    --green:     #56C47E;
-    --red:       #E05757;
-    --mono:      'Courier New', Courier, monospace;
-    --body:      'Segoe UI', system-ui, -apple-system, sans-serif;
-    --r:         6px;
+    --ground:#0F1419; --surface:#1A2332; --surface-2:#223042;
+    --text:#E8DFD0; --dim:#8D9BA8; --dimmer:#4A5A6A;
+    --accent:#F5A623; --teal:#3DBFB8; --green:#56C47E; --red:#E05757;
+    --mono:'Courier New', Courier, monospace;
+    --body:'Segoe UI', system-ui, -apple-system, sans-serif;
+    --r:6px;
   }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--ground); color: var(--text); font-family: var(--body); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-
-  .hero { padding: 3.5rem 2rem 2.5rem; max-width: 880px; margin: 0 auto; border-bottom: 1px solid var(--surface-2); }
-  .eyebrow { font-family: var(--mono); font-size: 0.7rem; color: var(--teal); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.25rem; }
-  .terminal { background: var(--surface); border: 1px solid var(--surface-2); border-radius: var(--r); padding: 1.2rem 1.4rem; font-family: var(--mono); font-size: 0.8rem; line-height: 2; margin-bottom: 2rem; overflow-x: auto; }
-  .tp { color: var(--teal); user-select: none; }
-  .td { color: var(--dimmer); }
-  .tk { color: var(--accent); }
-  .tv { color: var(--green); }
-  .to { color: var(--dim); }
-  .tw { color: var(--accent); font-weight: bold; }
-  .cursor { display: inline-block; width: 0.5em; height: 1.1em; background: var(--accent); vertical-align: text-bottom; animation: blink 1.1s step-end infinite; }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-  .hero-h1 { font-size: clamp(1.55rem, 4vw, 2.3rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.7rem; }
-  .hero-h1 span { color: var(--accent); }
-  .hero-sub { color: var(--dim); font-size: 0.92rem; max-width: 560px; line-height: 1.75; }
-
-  .start-block { max-width: 880px; margin: 0 auto; padding: 2rem 2rem 0; }
-  .start-card { background: rgba(86,196,126,0.06); border: 1px solid rgba(86,196,126,0.25); border-radius: var(--r); padding: 1.25rem 1.4rem; }
-  .start-card h2 { font-size: 0.85rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
-  .start-items { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.55rem; }
-  .start-item { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.84rem; padding: 0.55rem 0.75rem; background: rgba(86,196,126,0.05); border: 1px solid rgba(86,196,126,0.15); border-radius: var(--r); }
-  .si-num { font-family: var(--mono); font-size: 0.72rem; color: var(--green); flex-shrink: 0; margin-top: 0.2rem; font-weight: 700; }
-  .si-text { color: var(--text); }
-  .si-text small { color: var(--dim); display: block; font-size: 0.77rem; margin-top: 0.1rem; }
-
-  .stats-bar { display: flex; border-bottom: 1px solid var(--surface-2); border-top: 1px solid var(--surface-2); overflow-x: auto; margin-top: 1.5rem; }
-  .stat { flex: 1; min-width: 120px; padding: 1rem 1.2rem; border-right: 1px solid var(--surface-2); text-align: center; }
-  .stat:last-child { border-right: none; }
-  .stat-val { font-family: var(--mono); font-size: 1.2rem; font-weight: 700; color: var(--accent); display: block; line-height: 1; margin-bottom: 0.3rem; }
-  .stat-label { font-size: 0.67rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; }
-
-  .rules { max-width: 880px; margin: 0 auto; padding: 1rem 2rem 0; display: flex; gap: 0.5rem; flex-wrap: wrap; }
-  .rule { font-size: 0.77rem; padding: 0.28rem 0.7rem; border-radius: 100px; border: 1px solid var(--surface-2); color: var(--dim); background: var(--surface); }
-  .rule b { color: var(--accent); }
-
-  .phases { max-width: 880px; margin: 0 auto; padding: 0 2rem; }
-  .phase { padding: 2.5rem 0; border-bottom: 1px solid var(--surface-2); }
-  .phase-header { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.6rem; }
-  .phase-num { font-family: var(--mono); font-size: 2.2rem; font-weight: 700; color: var(--accent); line-height: 1; min-width: 3rem; opacity: 0.8; }
-  .phase-tag { font-family: var(--mono); font-size: 0.68rem; color: var(--teal); text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.4rem; }
-  .phase-tag::before { content: '$'; color: var(--dimmer); }
-  .phase-name { font-size: 1.25rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
-  .phase-dur { font-size: 0.8rem; color: var(--dim); }
-  .phase-dur b { color: var(--accent); }
-
-  .why { background: var(--surface); border-left: 3px solid var(--accent); border-radius: 0 var(--r) var(--r) 0; padding: 0.85rem 1.15rem; margin-bottom: 1.4rem; font-size: 0.87rem; color: var(--dim); line-height: 1.7; }
-  .why strong { color: var(--accent); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 0.25rem; }
-
-  .sl { font-family: var(--mono); font-size: 0.67rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--teal); margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.6rem; }
-  .sl::after { content: ''; flex: 1; height: 1px; background: var(--surface-2); }
-
-  .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0.55rem; margin-bottom: 1.4rem; }
-  .skill { display: flex; align-items: flex-start; gap: 0.6rem; background: var(--surface); border: 1px solid var(--surface-2); border-radius: var(--r); padding: 0.65rem 0.85rem; font-size: 0.84rem; }
-  .sd { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 0.55em; }
-  .sn { color: var(--text); font-weight: 600; line-height: 1.3; }
-  .sno { color: var(--dim); font-size: 0.77rem; margin-top: 0.1rem; }
-
-  .weeks { display: flex; flex-direction: column; gap: 0; margin-bottom: 1.4rem; border: 1px solid var(--surface-2); border-radius: var(--r); overflow: hidden; }
-  .wrow { display: flex; align-items: baseline; gap: 0.85rem; font-size: 0.83rem; padding: 0.65rem 0.9rem; border-bottom: 1px solid var(--surface-2); }
-  .wrow:last-child { border-bottom: none; }
-  .wl { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); min-width: 4.5rem; flex-shrink: 0; }
-  .wt { color: var(--dim); }
-  .wt strong { color: var(--text); }
-
-  .resources { display: flex; flex-direction: column; gap: 0.45rem; margin-bottom: 1.4rem; }
-  .res { display: flex; align-items: flex-start; gap: 0.7rem; background: var(--surface); border: 1px solid var(--surface-2); border-radius: var(--r); padding: 0.55rem 0.85rem; font-size: 0.84rem; }
-  .rtag { font-family: var(--mono); font-size: 0.67rem; color: var(--teal); background: rgba(61,191,184,0.1); padding: 0.15rem 0.5rem; border-radius: 3px; flex-shrink: 0; min-width: 62px; text-align: center; letter-spacing: 0.02em; margin-top: 0.15rem; }
-  .rn { color: var(--text); font-weight: 500; }
-  .rno { color: var(--dim); font-size: 0.77rem; margin-top: 0.08rem; }
-
-  .checkpoint { background: var(--surface); border: 1px solid rgba(86,196,126,0.3); border-radius: var(--r); padding: 0.85rem 1.05rem; display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.84rem; }
-  .ci { font-family: var(--mono); color: var(--green); font-weight: 700; flex-shrink: 0; }
-  .ct { color: var(--dim); line-height: 1.65; }
-  .ct strong { color: var(--green); }
-
-  .alert { background: rgba(245,166,35,0.07); border: 1px solid rgba(245,166,35,0.25); border-radius: var(--r); padding: 0.8rem 1rem; font-size: 0.83rem; color: var(--dim); margin-bottom: 1.4rem; line-height: 1.65; }
-  .alert b { color: var(--accent); }
-
-  .companies { max-width: 880px; margin: 0 auto; padding: 2.5rem 2rem; border-bottom: 1px solid var(--surface-2); }
-  .companies h2, .salary-section h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; }
-  .sec-sub { font-size: 0.83rem; color: var(--dim); margin-bottom: 1.4rem; }
-  .tier-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.9rem; }
-  .tier { background: var(--surface); border: 1px solid var(--surface-2); border-radius: var(--r); padding: 1rem 1.1rem; }
-  .tlbl { font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.4rem; }
-  .t1c { color: var(--green); } .t2c { color: var(--accent); } .t3c { color: var(--teal); }
-  .tdesc { font-size: 0.77rem; color: var(--dim); margin-bottom: 0.7rem; line-height: 1.5; }
-  .cotags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-  .co { font-size: 0.74rem; padding: 0.18rem 0.5rem; border-radius: 3px; font-weight: 500; }
-  .co.t1c { background: rgba(86,196,126,0.1); color: var(--green); border: 1px solid rgba(86,196,126,0.25); }
-  .co.t2c { background: rgba(245,166,35,0.1); color: var(--accent); border: 1px solid rgba(245,166,35,0.25); }
-  .co.t3c { background: rgba(61,191,184,0.1); color: var(--teal); border: 1px solid rgba(61,191,184,0.25); }
-
-  .salary-section { max-width: 880px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
-  .sal-line { display: flex; flex-direction: column; gap: 0; position: relative; }
-  .sal-line::before { content: ''; position: absolute; left: 5.2rem; top: 0; bottom: 0; width: 1px; background: var(--surface-2); }
-  .sr { display: flex; align-items: flex-start; gap: 1.3rem; padding: 0.9rem 0; }
-  .st { font-family: var(--mono); font-size: 0.72rem; color: var(--dim); min-width: 4.8rem; text-align: right; padding-top: 0.3rem; flex-shrink: 0; }
-  .sdot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0; border: 2px solid var(--ground); box-shadow: 0 0 0 2px var(--accent); position: relative; z-index: 1; margin-top: 0.4rem; }
-  .sdot.tl { background: var(--teal); box-shadow: 0 0 0 2px var(--teal); }
-  .sdot.gr { background: var(--green); box-shadow: 0 0 0 2px var(--green); }
-  .slpa { font-weight: 700; font-size: 1rem; color: var(--accent); margin-bottom: 0.1rem; }
-  .slpa.tl { color: var(--teal); } .slpa.gr { color: var(--green); }
-  .snote { font-size: 0.81rem; color: var(--dim); }
-
-  @media (max-width: 600px) {
-    .hero, .phases, .start-block, .companies, .salary-section, .rules { padding-left: 1.25rem; padding-right: 1.25rem; }
-    .stat { min-width: 100px; padding: 0.85rem 0.7rem; }
-    .stat-val { font-size: 1rem; }
-    .skill-grid { grid-template-columns: 1fr; }
-    .start-items { grid-template-columns: 1fr; }
-    .tier-grid { grid-template-columns: 1fr; }
-    .sal-line::before { left: 4.2rem; }
-    .st { min-width: 4rem; }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground:#FAF7F2; --surface:#FFFFFF; --surface-2:#E4DDD2;
+      --text:#1D2430; --dim:#56626F; --dimmer:#9AA3AD;
+      --accent:#A85F00; --teal:#0E7A74; --green:#2B7D4F; --red:#B83A3A;
+    }
   }
-  @media (prefers-reduced-motion: reduce) {
-    .cursor { animation: none; opacity: 1; }
+  :root[data-theme="light"] {
+    --ground:#FAF7F2; --surface:#FFFFFF; --surface-2:#E4DDD2;
+    --text:#1D2430; --dim:#56626F; --dimmer:#9AA3AD;
+    --accent:#A85F00; --teal:#0E7A74; --green:#2B7D4F; --red:#B83A3A;
+  }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--ground); color:var(--text); font-family:var(--body); font-size:15px; line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  a { color:var(--teal); }
+  .wrap { max-width:900px; margin:0 auto; padding:0 2rem; }
+  section { padding:2.4rem 0; border-bottom:1px solid var(--surface-2); }
+
+  .hero { padding:3.2rem 0 2rem; }
+  .eyebrow { font-family:var(--mono); font-size:.7rem; color:var(--teal); letter-spacing:.15em; text-transform:uppercase; margin-bottom:1.2rem; }
+  .terminal { background:var(--surface); border:1px solid var(--surface-2); border-radius:var(--r); padding:1.1rem 1.3rem; font-family:var(--mono); font-size:.78rem; line-height:1.95; margin-bottom:1.8rem; overflow-x:auto; white-space:nowrap; }
+  .tp{color:var(--teal)} .td{color:var(--dimmer)} .tk{color:var(--accent)} .tv{color:var(--green)} .to{color:var(--dim)} .tr{color:var(--red)}
+  h1 { font-size:clamp(1.5rem,4vw,2.2rem); font-weight:800; line-height:1.2; margin-bottom:.7rem; }
+  h1 span, h2 span { color:var(--accent); }
+  h2 { font-size:1.2rem; font-weight:700; margin-bottom:.35rem; }
+  h3 { font-size:.95rem; font-weight:700; margin:1.4rem 0 .5rem; }
+  .sub { color:var(--dim); font-size:.9rem; max-width:640px; line-height:1.75; }
+  .sec-sub { font-size:.84rem; color:var(--dim); margin-bottom:1.3rem; max-width:680px; }
+  p.body { font-size:.88rem; color:var(--dim); margin-bottom:.8rem; max-width:720px; }
+  p.body b { color:var(--text); }
+
+  .stats { display:flex; border:1px solid var(--surface-2); border-radius:var(--r); overflow-x:auto; margin-top:1.6rem; }
+  .stat { flex:1; min-width:110px; padding:.9rem 1rem; border-right:1px solid var(--surface-2); text-align:center; }
+  .stat:last-child { border-right:none; }
+  .sv { font-family:var(--mono); font-size:1.15rem; font-weight:700; color:var(--accent); display:block; line-height:1; margin-bottom:.3rem; }
+  .sl2 { font-size:.65rem; color:var(--dim); text-transform:uppercase; letter-spacing:.1em; }
+
+  .rules { display:flex; gap:.5rem; flex-wrap:wrap; margin-top:1.1rem; }
+  .rule { font-size:.76rem; padding:.28rem .7rem; border-radius:100px; border:1px solid var(--surface-2); color:var(--dim); background:var(--surface); }
+  .rule b { color:var(--accent); }
+
+  .why { background:var(--surface); border-left:3px solid var(--accent); border-radius:0 var(--r) var(--r) 0; padding:.85rem 1.1rem; margin-bottom:1.3rem; font-size:.86rem; color:var(--dim); line-height:1.7; }
+  .why strong { color:var(--accent); font-size:.67rem; text-transform:uppercase; letter-spacing:.1em; display:block; margin-bottom:.25rem; }
+  .why b { color:var(--text); }
+  .alert { background:rgba(245,166,35,.08); border:1px solid rgba(245,166,35,.3); border-radius:var(--r); padding:.8rem 1rem; font-size:.84rem; color:var(--dim); margin-bottom:1.3rem; line-height:1.65; }
+  .alert b { color:var(--accent); }
+  .good { background:rgba(86,196,126,.07); border:1px solid rgba(86,196,126,.3); border-radius:var(--r); padding:.8rem 1rem; font-size:.84rem; color:var(--dim); margin-bottom:1.3rem; line-height:1.65; }
+  .good b { color:var(--green); }
+
+  .lbl { font-family:var(--mono); font-size:.67rem; text-transform:uppercase; letter-spacing:.14em; color:var(--teal); margin:1.3rem 0 .7rem; display:flex; align-items:center; gap:.6rem; }
+  .lbl::after { content:''; flex:1; height:1px; background:var(--surface-2); }
+
+  .phase-head { display:flex; align-items:flex-start; gap:1.1rem; margin-bottom:1.4rem; }
+  .pnum { font-family:var(--mono); font-size:2.1rem; font-weight:700; color:var(--accent); line-height:1; min-width:2.8rem; opacity:.85; }
+  .ptag { font-family:var(--mono); font-size:.67rem; color:var(--teal); text-transform:uppercase; letter-spacing:.14em; margin-bottom:.2rem; }
+  .ptag::before { content:'$ '; color:var(--dimmer); }
+  .pname { font-size:1.22rem; font-weight:700; }
+  .pdur { font-size:.8rem; color:var(--dim); }
+  .pdur b { color:var(--accent); }
+
+  .tbl { overflow-x:auto; border:1px solid var(--surface-2); border-radius:var(--r); margin-bottom:1.3rem; }
+  table { width:100%; border-collapse:collapse; font-size:.82rem; }
+  th { text-align:left; font-family:var(--mono); font-size:.66rem; text-transform:uppercase; letter-spacing:.08em; color:var(--teal); background:var(--surface); padding:.55rem .75rem; border-bottom:1px solid var(--surface-2); white-space:nowrap; }
+  td { padding:.55rem .75rem; border-bottom:1px solid var(--surface-2); color:var(--dim); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  td b, td strong { color:var(--text); }
+  td.n { font-family:var(--mono); color:var(--accent); white-space:nowrap; }
+  .ok{color:var(--green)} .mid{color:var(--accent)} .gap{color:var(--red)}
+
+  .weeks { border:1px solid var(--surface-2); border-radius:var(--r); overflow:hidden; margin-bottom:1.3rem; }
+  .wrow { display:flex; gap:.85rem; font-size:.83rem; padding:.65rem .9rem; border-bottom:1px solid var(--surface-2); }
+  .wrow:last-child { border-bottom:none; }
+  .wl { font-family:var(--mono); font-size:.7rem; color:var(--accent); min-width:5.6rem; flex-shrink:0; padding-top:.1rem; }
+  .wt { color:var(--dim); }
+  .wt strong { color:var(--text); }
+
+  .checks { display:flex; flex-direction:column; gap:.45rem; margin-bottom:1.3rem; }
+  .check { display:flex; gap:.7rem; align-items:flex-start; background:var(--surface); border:1px solid var(--surface-2); border-radius:var(--r); padding:.6rem .85rem; font-size:.84rem; cursor:pointer; }
+  .check input { margin-top:.3rem; accent-color:var(--green); width:16px; height:16px; flex-shrink:0; }
+  .check span { color:var(--text); }
+  .check small { display:block; color:var(--dim); font-size:.77rem; margin-top:.1rem; }
+  .check:has(input:checked) span { text-decoration:line-through; opacity:.6; }
+
+  .checkpoint { background:var(--surface); border:1px solid rgba(86,196,126,.35); border-radius:var(--r); padding:.85rem 1rem; display:flex; gap:.7rem; font-size:.84rem; margin-bottom:1.3rem; }
+  .ci { font-family:var(--mono); color:var(--green); font-weight:700; flex-shrink:0; }
+  .ct { color:var(--dim); line-height:1.65; }
+  .ct strong { color:var(--green); }
+
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:.7rem; margin-bottom:1.3rem; }
+  .card { background:var(--surface); border:1px solid var(--surface-2); border-radius:var(--r); padding:.9rem 1rem; font-size:.83rem; color:var(--dim); }
+  .card h4 { font-size:.88rem; color:var(--text); margin-bottom:.35rem; }
+  .card .tag { font-family:var(--mono); font-size:.65rem; text-transform:uppercase; letter-spacing:.12em; margin-bottom:.3rem; display:block; }
+  .cos { display:flex; flex-wrap:wrap; gap:.35rem; margin-top:.6rem; }
+  .co { font-size:.72rem; padding:.15rem .5rem; border-radius:3px; border:1px solid var(--surface-2); color:var(--text); background:var(--ground); }
+
+  .res { display:flex; gap:.7rem; background:var(--surface); border:1px solid var(--surface-2); border-radius:var(--r); padding:.55rem .85rem; font-size:.83rem; margin-bottom:.45rem; }
+  .rtag { font-family:var(--mono); font-size:.64rem; color:var(--teal); background:rgba(61,191,184,.1); padding:.15rem .5rem; border-radius:3px; flex-shrink:0; min-width:66px; text-align:center; margin-top:.15rem; height:fit-content; }
+  .rn { color:var(--text); font-weight:500; }
+  .rno { color:var(--dim); font-size:.77rem; }
+
+  ul.list { margin:0 0 1rem 1.1rem; font-size:.85rem; color:var(--dim); }
+  ul.list li { margin-bottom:.35rem; }
+  ul.list b { color:var(--text); }
+  .score input[type=number] { width:3.6rem; background:var(--ground); color:var(--text); border:1px solid var(--surface-2); border-radius:3px; padding:.15rem .3rem; font-family:var(--mono); font-size:.78rem; }
+  .src { font-size:.78rem; color:var(--dim); margin-bottom:.35rem; word-break:break-word; }
+  .snip { font-family:var(--mono); font-size:.62rem; color:var(--accent); border:1px solid var(--surface-2); padding:0 .3rem; border-radius:3px; margin-left:.3rem; }
+  footer { padding:2rem 0 4rem; font-size:.75rem; color:var(--dimmer); font-family:var(--mono); }
+
+  @media (max-width:600px) {
+    .wrap { padding:0 1rem; }
+    .grid { grid-template-columns:1fr; }
+    .wrow { flex-direction:column; gap:.2rem; }
+    .stats { flex-wrap:wrap; }
+    .stat { flex:1 1 33%; min-width:0; padding:.8rem .5rem; border-bottom:1px solid var(--surface-2); }
   }
 </style>
+</head>
+<body>
 
-<section class="hero">
-  <p class="eyebrow">Career Roadmap &nbsp;·&nbsp; Samarth Rana &nbsp;·&nbsp; Starts Monday</p>
-  <div class="terminal" aria-label="Mission briefing">
-    <div><span class="tp">samarth@dhwanipro:~$</span> <span class="td">./roadmap.sh --role=AI_PM --budget=free --hrs=1.5 --start=Monday</span></div>
-    <div><span class="to">Loading profile...</span></div>
-    <div><span class="tk">current_title</span>   <span class="tv">Analyst, Dhwani RIS</span>  <span class="td"># push for "Product Analyst" — costs nothing to ask</span></div>
-    <div><span class="tk">edge</span>             <span class="tv">Ships production tools with Claude Code</span>  <span class="td"># rare in 2026</span></div>
-    <div><span class="tk">sql_level</span>        <span class="tv">beginner</span>  <span class="td"># target: window functions + retention queries</span></div>
-    <div><span class="tk">gap</span>              <span class="td">SQL · PRD writing · AI/LLM vocabulary · networking</span></div>
-    <div><span class="to">AI PM demand outpaces supply 3x in India. AI PMs earn 30–50% more than standard PMs.</span></div>
-    <div><span class="tw">→  Apply at Week 16. Not Week 26.</span></div>
-    <div><span class="to">6 phases. 26 weeks to complete. Applications open Month 4.</span></div>
-    <div><span class="tp">samarth@dhwanipro:~$</span> <span class="cursor"></span></div>
+<!-- ═══ HERO ═══ -->
+<div class="wrap hero">
+  <div class="eyebrow">The 2027 PM Plan · Samarth Rana · W0 starts 17 Nov 2026</div>
+  <div class="terminal">
+    <div><span class="tp">samarth@build:~$</span> ./plan.sh --role=PM --mode=proof-first --hrs=12/wk</div>
+    <div><span class="td"># </span><span class="to">reading 23 job descriptions, interview reports, market data…</span></div>
+    <div><span class="tk">current_title </span><span class="tv">Associate Project Manager · impact-tech services</span></div>
+    <div><span class="tk">edge          </span><span class="tv">ships production tools with Claude Code</span><span class="td">  # 52% of PM JDs now ask for this</span></div>
+    <div><span class="tk">last_run      </span><span class="tv">fintech APM · final round · role put on hold</span></div>
+    <div><span class="tk">gaps          </span><span class="tr">SQL · evals · experiments · saying what you decided</span></div>
+    <div><span class="tk">deadline_math </span><span class="to">offer mid-Mar ← interviews late Jan ← proof ready Dec ← start NOW</span></div>
   </div>
-  <h1 class="hero-h1">The plan to become an<br><span>AI Product Manager</span></h1>
-  <p class="hero-sub">Every skill here is what Indian funded startups actually test in 2026. Sequence matters. Don't skip ahead. Applications start at Week 16 — the rest is built while you're interviewing.</p>
-</section>
-
-<div class="start-block">
-  <div class="start-card">
-    <h2>⬤ Before you open a single course — do these this week</h2>
-    <div class="start-items">
-      <div class="start-item"><span class="si-num">01</span><div class="si-text">Ask your manager for "Product Analyst" title<small>You're already doing the work. Cost: one conversation. Impact: removes the biggest hiring barrier.</small></div></div>
-      <div class="start-item"><span class="si-num">02</span><div class="si-text">Join Product Folks India on Slack<small>Free. Active PM community in India. Lurk for 2 weeks, then engage. This is where referrals come from.</small></div></div>
-      <div class="start-item"><span class="si-num">03</span><div class="si-text">Update LinkedIn headline today<small>"Building AI-assisted products | Analyst @ Dhwani RIS → AI PM" — not your job title, your trajectory.</small></div></div>
-      <div class="start-item"><span class="si-num">04</span><div class="si-text">Create a free Notion account<small>All PRDs and portfolio pieces live here. Set up one blank page called "IDH PRD — Draft."</small></div></div>
-    </div>
+  <h1>Proof first. <span>Apply early.</span> Three lanes.</h1>
+  <p class="sub">The June roadmap was learn-then-apply over 26 weeks. The research says that misses the window: with a typical notice period, first interviews must start by late January. So this plan builds proof in December, starts reaching people this week, and runs interview practice every week until an offer is signed.</p>
+  <div class="stats">
+    <div class="stat"><span class="sv">20</span><span class="sl2">weeks + buffer</span></div>
+    <div class="stat"><span class="sv">12h</span><span class="sl2">per week, hard cap</span></div>
+    <div class="stat"><span class="sv">5 Jan</span><span class="sl2">main apply wave</span></div>
+    <div class="stat"><span class="sv">mid-Mar</span><span class="sl2">offer target</span></div>
+    <div class="stat"><span class="sv">title</span><span class="sl2">over first salary</span></div>
+  </div>
+  <div class="rules">
+    <span class="rule"><b>1</b> Applications never slip — everything else gives way first</span>
+    <span class="rule"><b>2</b> Every answer opens with the decision, never the scope</span>
+    <span class="rule"><b>3</b> No number you can't defend in five seconds</span>
+    <span class="rule"><b>4</b> Referral before cold — 5–18× the odds</span>
+    <span class="rule"><b>5</b> Skills first, money decided at W10</span>
   </div>
 </div>
 
-<div class="stats-bar" role="list">
-  <div class="stat"><span class="stat-val">26</span><span class="stat-label">Weeks total</span></div>
-  <div class="stat"><span class="stat-val">Wk 16</span><span class="stat-label">Apply from</span></div>
-  <div class="stat"><span class="stat-val">1.5h</span><span class="stat-label">Per day</span></div>
-  <div class="stat"><span class="stat-val">₹0</span><span class="stat-label">Budget</span></div>
-  <div class="stat"><span class="stat-val">2</span><span class="stat-label">Portfolio pieces</span></div>
-  <div class="stat"><span class="stat-val">40+</span><span class="stat-label">LPA · Year 5</span></div>
-</div>
+<!-- ═══ WHAT THE MARKET SAYS ═══ -->
+<section><div class="wrap">
+  <h2>What the market <span>actually</span> asks for</h2>
+  <p class="sec-sub">23 real job descriptions read in full on 17 Nov 2026 — 14 India, 9 remote-from-India. Percentages are directional, not statistics. Full links in the Sources section.</p>
+  <div class="tbl"><table>
+    <tr><th>Skill</th><th>% of JDs</th><th>Where you stand</th></tr>
+    <tr><td><b>Stakeholder / cross-functional</b></td><td class="n">87%</td><td class="ok">✓ your daily job</td></tr>
+    <tr><td><b>Metrics, analytics, dashboards</b></td><td class="n">78%</td><td class="ok">✓ HDFC, IDH</td></tr>
+    <tr><td><b>PRDs, specs, user stories</b></td><td class="n">65%</td><td class="mid">◐ written them — need decision-first versions</td></tr>
+    <tr><td><b>Hands-on SQL</b></td><td class="n">57%</td><td class="gap">✗ intermediate → fix in Phase 1</td></tr>
+    <tr><td><b>LLM / agent / AI product knowledge</b></td><td class="n">57%</td><td class="mid">◐ you practise it, can't yet name it</td></tr>
+    <tr><td><b>Prototyping with AI coding tools</b></td><td class="n">52%</td><td class="ok">✓ <b>your edge</b> — Groww, FourKites, Wibmo, RoaDo name Claude Code / Cursor</td></tr>
+    <tr><td><b>Experimentation / A/B</b></td><td class="n">35%</td><td class="gap">✗ fix in Phase 2</td></tr>
+    <tr><td><b>A named analytics tool</b> (PostHog, Mixpanel, Amplitude)</td><td class="n">26%</td><td class="gap">✗ PostHog on the flagship</td></tr>
+    <tr><td><b>Evals</b> (testing AI output quality)</td><td class="n">~20% ↑</td><td class="gap">✗ the flagship fixes this</td></tr>
+    <tr><td>Figma</td><td class="n">9%</td><td>optional — AI prototyping took its slot</td></tr>
+  </table></div>
+  <div class="alert"><b>Three hard truths.</b> (1) Junior "AI PM" titles barely exist — in one study of 12,397 AI-PM postings, 2% were junior. The target is <b>APM / PM roles where your AI proof sets you apart</b>. (2) USD-paid junior remote PM roles open to India are effectively zero; what exists is India-payroll remote work at global firms. (3) The #1 reported rejection reason is "vague, no demonstrable ownership" — a finding from past final rounds. This plan fixes it first, not last.</div>
+</div></section>
 
-<div class="rules">
-  <div class="rule"><b>Rule 1:</b> Don't start Phase 2 before Phase 1 checkpoint passes</div>
-  <div class="rule"><b>Rule 2:</b> Build the portfolio piece inside each phase — not at the end</div>
-  <div class="rule"><b>Rule 3:</b> Apply at Week 16. "Not ready" is not a reason to wait.</div>
-  <div class="rule"><b>Rule 4:</b> 2 LinkedIn outreach messages per week from Day 1 — this runs alongside everything</div>
-</div>
-
-<div class="phases">
-
-  <section class="phase" id="p0">
-    <div class="phase-header">
-      <div class="phase-num">00</div>
-      <div>
-        <div class="phase-tag">calibrate</div>
-        <div class="phase-name">Foundation Audit</div>
-        <div class="phase-dur"><b>2 weeks · ~14 hours</b> &nbsp;·&nbsp; Weeks 1–2</div>
+<!-- ═══ WEEK 0 ═══ -->
+<section><div class="wrap">
+  <div class="phase-head"><div class="pnum">00</div><div>
+    <div class="ptag">this week</div><div class="pname">Week 0 — the free moves</div>
+    <div class="pdur"><b>17–23 Nov</b> · ~6 hours · costs nothing, unblocks everything</div>
+  </div></div>
+  <div class="checks">
+    <label class="check"><input type="checkbox" data-k="w0-1"><span>Fix LinkedIn — headline, About, three job blocks written decision-first, Featured = IDH + HDFC case studies<small>Three months overdue. Every referral and recruiter lands here before they read anything else.</small></span></label>
+    <label class="check"><input type="checkbox" data-k="w0-2"><span>Start the delta log<small>One line per piece of AI-assisted work: what it was, before → after. Example shape: "activity-score RCA: ~2 days → 3 hours". Only write numbers you caused and can explain.</small></span></label>
+    <label class="check"><input type="checkbox" data-k="w0-3"><span>Build the target list — 40 companies across the three lanes, one named person at each<small>A sheet: company · lane · person · how you know them (or the mutual) · status.</small></span></label>
+    <label class="check"><input type="checkbox" data-k="w0-4"><span>Register for Product Leaders Day India — Sat 29 Nov, Delhi NCR<small>In your city, 12 days away. Goal: three real conversations, not a stack of cards.</small></span></label>
       </div>
-    </div>
-    <div class="why"><strong>Why this comes first</strong>Most people start learning without knowing what "good" looks like. This phase calibrates your eye. You'll read real PRDs, realise your Dhwani RIS work is already PM work — you've just never written it down that way. You also set up the networking habit here, which runs in parallel for the entire 26 weeks.</div>
-    <p class="sl">What to do</p>
-    <div class="skill-grid">
-      <div class="skill"><div class="sd"></div><div><div class="sn">Read 10 real PRDs</div><div class="sno">GitLab's product direction pages are all public. Study the structure: problem → users → solution → metrics. Don't read for content, read for format.</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">Learn Shreyas Doshi's 6Ps</div><div class="sno">Purpose, Principles, Priorities, Proactivity, People, Process. The clearest mental model for what a PM actually manages.</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">Set up tools</div><div class="sno">Notion (free) for PRDs. Figma (free) for wireframes. These are the PM's daily tools — get familiar with blank pages in both.</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">Audit your Dhwani RIS work</div><div class="sno">List every decision you made, every stakeholder managed, every feature shaped. IDH, HDFC, Chetna, UNM — these become your interview stories. Write them down now.</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">Start networking (ongoing)</div><div class="sno">2 LinkedIn outreach messages per week to PMs at target companies. Not asking for a job — asking for a 15-min call. This habit runs for all 26 weeks.</div></div></div>
-    </div>
-    <p class="sl">Resources (free)</p>
-    <div class="resources">
-      <div class="res"><span class="rtag">gitlab.com</span><div><div class="rn">GitLab Product Direction pages</div><div class="rno">Public, real, updated. The best free library of real PM output available anywhere.</div></div></div>
-      <div class="res"><span class="rtag">X / LinkedIn</span><div><div class="rn">Shreyas Doshi — @shreyas</div><div class="rno">Start with his "6Ps of product work" and "What separates great PMs" threads.</div></div></div>
-      <div class="res"><span class="rtag">Slack</span><div><div class="rn">Product Folks India</div><div class="rno">Free community. Active in India. Lurk first, engage after Week 4.</div></div></div>
-    </div>
-    <div class="checkpoint"><span class="ci">✓ PASS</span><p class="ct"><strong>Checkpoint:</strong> Write a 150-word summary of the IDH mForm project in PRD language — problem, users affected, what you built, how you'd measure success. If you can write this in one sitting, your eye is calibrated. Move to Phase 1.</p></div>
-  </section>
+</div></section>
 
-  <section class="phase" id="p1">
-    <div class="phase-header">
-      <div class="phase-num">01</div>
-      <div>
-        <div class="phase-tag">sql</div>
-        <div class="phase-name">SQL for Product Analytics</div>
-        <div class="phase-dur"><b>6 weeks · ~42 hours</b> &nbsp;·&nbsp; Weeks 3–8</div>
-      </div>
-    </div>
-    <div class="why"><strong>Why SQL is the first skill to crack</strong>Almost every PM interview at a funded Indian startup includes a SQL round. It's the clearest signal you can work with data independently. At beginner level, you need 6 weeks to reach interview-ready. Don't rush this — window functions and retention queries at the end are what separate PM candidates.</div>
-    <p class="sl">Week-by-week</p>
-    <div class="weeks">
-      <div class="wrow"><span class="wl">Week 3</span><span class="wt"><strong>SELECT, WHERE, ORDER BY, LIMIT, DISTINCT.</strong> 7 hrs. Do all of SQLZoo's SELECT basics (levels 0–4). Don't move on until these feel automatic.</span></div>
-      <div class="wrow"><span class="wl">Week 4</span><span class="wt"><strong>GROUP BY, COUNT, SUM, AVG, HAVING.</strong> 7 hrs. HAVING vs WHERE is where most beginners get stuck — make sure this is clear before moving on.</span></div>
-      <div class="wrow"><span class="wl">Week 5</span><span class="wt"><strong>JOINs — INNER, LEFT, RIGHT, FULL OUTER.</strong> 7 hrs. Draw Venn diagrams. Know when a LEFT JOIN vs INNER JOIN changes your result in a product context.</span></div>
-      <div class="wrow"><span class="wl">Week 6</span><span class="wt"><strong>Subqueries and CTEs (WITH clause).</strong> 7 hrs. CTEs make complex queries readable. Interviewers love them — it signals you think in steps, which is a PM trait.</span></div>
-      <div class="wrow"><span class="wl">Week 7</span><span class="wt"><strong>Window functions: RANK(), ROW_NUMBER(), LAG(), LEAD(), PARTITION BY.</strong> 8 hrs. Master PARTITION BY. These appear in almost every data-focused PM interview.</span></div>
-      <div class="wrow"><span class="wl">Week 8</span><span class="wt"><strong>Product-specific queries.</strong> 6 hrs. Funnels (step-drop-off), DAU/MAU calculation, 7-day and 30-day rolling retention cohorts.</span></div>
-    </div>
-    <p class="sl">Resources (free)</p>
-    <div class="resources">
-      <div class="res"><span class="rtag">sqlzoo.net</span><div><div class="rn">SQLZoo — All modules</div><div class="rno">Interactive, browser-based, no setup. Primary resource for Weeks 3–6.</div></div></div>
-      <div class="res"><span class="rtag">mode.com</span><div><div class="rn">Mode Analytics SQL Tutorial</div><div class="rno">Free, product-focused. Real datasets. Best for Weeks 6–8.</div></div></div>
-      <div class="res"><span class="rtag">leetcode.com</span><div><div class="rn">LeetCode SQL — 30 problems</div><div class="rno">Start from Week 5. 1 Easy/Medium problem per day.</div></div></div>
-      <div class="res"><span class="rtag">YouTube</span><div><div class="rn">Ankit Bansal — SQL interview questions</div><div class="rno">India-specific, interview-focused. His window function playlist is the clearest available. Watch from Week 7.</div></div></div>
-    </div>
-    <div class="checkpoint"><span class="ci">✓ PASS</span><p class="ct"><strong>Checkpoint:</strong> Given a table of user_id + event_name + event_date, write a query that calculates <strong>30-day retention</strong> — users who did action A in Week 1 and returned in Week 5. If you can write this using CTEs in under 20 minutes, Phase 1 is done.</p></div>
-  </section>
-
-  <section class="phase" id="p2">
-    <div class="phase-header">
-      <div class="phase-num">02</div>
-      <div>
-        <div class="phase-tag">product</div>
-        <div class="phase-name">Product Fundamentals</div>
-        <div class="phase-dur"><b>6 weeks · ~42 hours</b> &nbsp;·&nbsp; Weeks 9–14</div>
-      </div>
-    </div>
-    <div class="why"><strong>SQL gets you in the room. Product thinking keeps you there.</strong>By doing SQL first, you've already trained yourself to ask "how would I measure this?" — which is exactly the mindset you need while learning North Star metrics and KPI trees. You'll also build Portfolio Piece #1 here: a full PRD for the IDH platform.</div>
-    <p class="sl">Skills to build</p>
-    <div class="skill-grid">
-      <div class="skill"><div class="sd"></div><div><div class="sn">PRD writing</div><div class="sno">Structure: context → problem → goals → non-goals → user stories → success metrics → open questions.</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">Prioritisation</div><div class="sno">RICE scoring, MoSCoW, Impact vs Effort. Know when to use each.</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">North Star + KPI trees</div><div class="sno">Every product has one North Star. Draw this tree for the HDFC dashboard — you already know the data.</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">User stories</div><div class="sno">"As a [field worker], I want [to log data offline], so that [entries aren't lost in low-connectivity zones]."</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">Product sense framework</div><div class="sno">Clarify → segment users → pain points → ideate → prioritise → define metrics. Practice this structure out loud.</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">A/B testing basics</div><div class="sno">Control vs variant, hypothesis definition, statistical significance in plain language. Tier 2 companies test this.</div></div></div>
-    </div>
-    <p class="sl">Week-by-week</p>
-    <div class="weeks">
-      <div class="wrow"><span class="wl">Week 9</span><span class="wt"><strong>Read "Inspired" by Marty Cagan</strong> — Part 1 + 2. The foundational PM book. Non-negotiable.</span></div>
-      <div class="wrow"><span class="wl">Week 10</span><span class="wt"><strong>North Star metrics + KPI trees.</strong> Read Reforge's North Star Framework article. Then draw the KPI tree for the HDFC dashboard you actually built.</span></div>
-      <div class="wrow"><span class="wl">Week 11</span><span class="wt"><strong>PRD structure.</strong> Read 5 more PRDs. Write your first draft PRD for the IDH mForm platform. Don't polish — just get the structure right.</span></div>
-      <div class="wrow"><span class="wl">Week 12</span><span class="wt"><strong>Prioritisation + A/B testing.</strong> Learn RICE. Read 2 articles on A/B testing for PMs. Enough to hold a conversation, not build a test.</span></div>
-      <div class="wrow"><span class="wl">Week 13</span><span class="wt"><strong>Product sense practice.</strong> Answer 3 product design questions from productmanagementexercises.com out loud. Record yourself once and watch it back.</span></div>
-      <div class="wrow"><span class="wl">Week 14</span><span class="wt"><strong>Polish the IDH PRD.</strong> Add user stories, success metrics, open questions. 3–4 pages in Notion. This is Portfolio Piece #1.</span></div>
-    </div>
-    <p class="sl">Resources (free)</p>
-    <div class="resources">
-      <div class="res"><span class="rtag">book</span><div><div class="rn">"Inspired" — Marty Cagan</div><div class="rno">The most cited PM book in India. Read Parts 1–3. Non-negotiable.</div></div></div>
-      <div class="res"><span class="rtag">reforge.com</span><div><div class="rn">Reforge Blog — free articles</div><div class="rno">North Star Framework, Metrics trees, Retention deep-dives. All free on the blog.</div></div></div>
-      <div class="res"><span class="rtag">lenny.news</span><div><div class="rn">Lenny's Newsletter — free archive</div><div class="rno">Search: "How to write a PRD," "North Star metric," "What makes a great PM."</div></div></div>
-      <div class="res"><span class="rtag">pmexercises</span><div><div class="rn">productmanagementexercises.com</div><div class="rno">Free library of real interview questions. Use for Week 13 practice.</div></div></div>
-    </div>
-    <div class="checkpoint"><span class="ci">✓ PASS</span><p class="ct"><strong>Portfolio Piece #1 — IDH PRD:</strong> A complete PRD for the IDH mForm platform in Notion. Must include: problem statement, target users, success metrics, user stories, and one open question. <strong>Share this link in every job application from Week 16 onwards.</strong></p></div>
-  </section>
-
-  <section class="phase" id="p3">
-    <div class="phase-header">
-      <div class="phase-num">03</div>
-      <div>
-        <div class="phase-tag">ai · llm</div>
-        <div class="phase-name">AI / LLM Knowledge for PMs</div>
-        <div class="phase-dur"><b>6 weeks · ~42 hours</b> &nbsp;·&nbsp; Weeks 15–20 &nbsp;·&nbsp; runs parallel with applications</div>
-      </div>
-    </div>
-    <div class="why"><strong>This is the differentiator. You already have a head start.</strong>You build with Claude Code in production. Most PM candidates can describe AI features — you've shipped them. This phase gives you the vocabulary to talk about it. Almost none can spec an AI feature, discuss RAG vs fine-tuning tradeoffs, or define evaluation criteria for LLM output. That gap is where the 30–50% salary premium lives.</div>
-    <p class="sl">Skills in order</p>
-    <div class="skill-grid">
-      <div class="skill"><div class="sd"></div><div><div class="sn">ML fundamentals (non-code)</div><div class="sno">Supervised vs unsupervised, classification, regression, clustering. You need vocabulary, not maths.</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">How LLMs work</div><div class="sno">Tokens, context windows, temperature, next-token prediction. Enough to know why the model behaves the way it does.</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">RAG vs fine-tuning</div><div class="sno">When to retrieve vs bake in knowledge. This is a product decision, not just engineering. You will be asked this in AI PM interviews.</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">Prompt engineering for products</div><div class="sno">How a product feature's system prompt becomes a spec. This is how you write AI PRDs that engineers can actually build from.</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">AI failure modes</div><div class="sno">Hallucination, bias, latency, cost, context limits. A PM's job is to account for failure before it ships. Know all five cold.</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">Evaluating AI product quality</div><div class="sno">Human eval, A/B testing with LLM judges, qualitative scoring. You define what "good" means so engineering can measure it.</div></div></div>
-    </div>
-    <p class="sl">Week-by-week</p>
-    <div class="weeks">
-      <div class="wrow"><span class="wl">Week 15</span><span class="wt"><strong>ML fundamentals.</strong> Complete "AI for Everyone" by Andrew Ng on Coursera (audit free, ~6 hours). Do it in one week.</span></div>
-      <div class="wrow"><span class="wl">Week 16</span><span class="wt"><strong>LLMs.</strong> Watch Andrej Karpathy's "Intro to Large Language Models" on YouTube (1 hour). Then Cohere LLM University, first 3 modules. <strong>Also: send first job applications this week.</strong></span></div>
-      <div class="wrow"><span class="wl">Week 17</span><span class="wt"><strong>RAG and fine-tuning.</strong> Read 3 articles on RAG. Write a 200-word note: when would you use RAG vs fine-tuning for a health NGO data tool?</span></div>
-      <div class="wrow"><span class="wl">Week 18</span><span class="wt"><strong>Prompt engineering for products.</strong> Read Anthropic's Prompt Engineering Guide. Write 3 system prompts for hypothetical features on the HDFC dashboard.</span></div>
-      <div class="wrow"><span class="wl">Week 19</span><span class="wt"><strong>AI failure modes.</strong> Read 5 AI product post-mortems. For each: identify the failure, what a PM should have caught, how you'd spec a guard-rail.</span></div>
-      <div class="wrow"><span class="wl">Week 20</span><span class="wt"><strong>Portfolio Piece #2.</strong> Write a 2-page AI Feature Spec for adding an AI assistant to the HDFC CSR dashboard. Architecture decision, system prompt, success metrics, failure risks, evaluation criteria.</span></div>
-    </div>
-    <p class="sl">Resources (free)</p>
-    <div class="resources">
-      <div class="res"><span class="rtag">coursera.org</span><div><div class="rn">AI for Everyone — Andrew Ng</div><div class="rno">Audit free. 6 hours. Built for non-technical people. The most efficient ML entry point available.</div></div></div>
-      <div class="res"><span class="rtag">YouTube</span><div><div class="rn">Andrej Karpathy — "Intro to Large Language Models"</div><div class="rno">1 hour. Best LLM intuition available for free without a maths background. Watch it twice.</div></div></div>
-      <div class="res"><span class="rtag">cohere.com</span><div><div class="rn">LLM University — Cohere</div><div class="rno">Free, structured. RAG, embeddings, fine-tuning at a conceptual level.</div></div></div>
-      <div class="res"><span class="rtag">anthropic</span><div><div class="rn">Anthropic Prompt Engineering Guide</div><div class="rno">Free, public. Written by the team who built the tool you already use.</div></div></div>
-    </div>
-    <div class="checkpoint"><span class="ci">✓ PASS</span><p class="ct"><strong>Portfolio Piece #2 — AI Feature Spec:</strong> 2-page spec for an AI query assistant on the HDFC CSR dashboard. Must include: architectural decision (RAG chosen, why), system prompt design, success metrics, failure mode plan, rollout approach. <strong>This is the document that makes you different from every other PM candidate.</strong></p></div>
-  </section>
-
-  <section class="phase" id="p4">
-    <div class="phase-header">
-      <div class="phase-num">04</div>
-      <div>
-        <div class="phase-tag">portfolio · linkedin</div>
-        <div class="phase-name">Visibility Rebuild</div>
-        <div class="phase-dur"><b>4 weeks · ~20 hours</b> &nbsp;·&nbsp; Weeks 21–24 &nbsp;·&nbsp; parallel with applications</div>
-      </div>
-    </div>
-    <div class="why"><strong>Every recruiter checks LinkedIn within 30 seconds of seeing your application.</strong>Your current profile is from the SettleMed era. It does not say "AI PM candidate." Before you send any Tier 2 application, this needs to reflect who you are now.</div>
-    <div class="alert"><b>Title situation:</b> If the title stays "Analyst," LinkedIn headline and the Featured section carry the weight that the title doesn't. The headline is the first thing recruiters read — it must say "product" and "AI" explicitly.</div>
-    <p class="sl">LinkedIn — exact changes</p>
-    <div class="skill-grid">
-      <div class="skill"><div class="sd"></div><div><div class="sn">Headline</div><div class="sno">"AI-Assisted Product Builder | Analyst @ Dhwani RIS → AI PM" — your trajectory, not your title.</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">About section</div><div class="sno">Lead with: "I use Claude Code to independently ship production dashboards at Dhwani RIS — 3 programmes from requirements to deployment without an engineering team."</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">Reframe job bullets</div><div class="sno">Every bullet: what did I decide → what did I ship → what happened. Use Phase 2's PM framing.</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">Featured section</div><div class="sno">Add the IDH PRD link and the AI Feature Spec link. Recruiters will click. This is your portfolio working for you passively.</div></div></div>
-      <div class="skill"><div class="sd"></div><div><div class="sn">Post once a week</div><div class="sno">Real observations only — what you built, what broke, what you learned. "We chose RAG over fine-tuning for this reason" gets PM recruiter attention.</div></div></div>
-    </div>
-    <div class="checkpoint"><span class="ci">✓ PASS</span><p class="ct"><strong>Checkpoint:</strong> LinkedIn headline updated. Both portfolio pieces live with shareable links. 2 LinkedIn posts published. Notion portfolio page ready to paste into any application. <strong>Tier 2 applications start now.</strong></p></div>
-  </section>
-
-  <section class="phase" id="p5">
-    <div class="phase-header">
-      <div class="phase-num">05</div>
-      <div>
-        <div class="phase-tag">interviews · applications</div>
-        <div class="phase-name">Interview Prep + Active Applications</div>
-        <div class="phase-dur"><b>Runs parallel from Week 16 onwards</b></div>
-      </div>
-    </div>
-    <div class="why"><strong>PM interviews have exactly 4 question types. Know all 4 cold.</strong>The behavioral questions are where Samarth wins — the IDH platform build, the HDFC stakeholder work, the Chetna Foundation scope expansion from 1 to 3 projects. These are real PM decisions, not hypotheticals.</div>
-    <p class="sl">The 4 question types</p>
-    <div class="weeks">
-      <div class="wrow"><span class="wl">Type 1</span><span class="wt"><strong>Product Design / Sense.</strong> Framework: clarify scope → user segments → pain points → ideate → prioritise by impact → define metrics. Practice 2 questions per week out loud.</span></div>
-      <div class="wrow"><span class="wl">Type 2</span><span class="wt"><strong>Metrics / Analytical.</strong> "Sessions dropped 20% — walk me through your thinking." Framework: segment → hypotheses → validation → fix. Follow with SQL if asked.</span></div>
-      <div class="wrow"><span class="wl">Type 3</span><span class="wt"><strong>Estimation.</strong> Structure: anchor on known data → build up from components → sanity check. 1 estimation question per day, under 5 minutes.</span></div>
-      <div class="wrow"><span class="wl">Type 4</span><span class="wt"><strong>Behavioral.</strong> STAR format. Your 6 stories: IDH requirements ambiguity, HDFC national convention, Chetna scope expansion, UNM field research, SettleMed UiPath automation, leading a team of 6. Write these before your first interview.</span></div>
-    </div>
-    <p class="sl">Application order</p>
-    <div class="weeks">
-      <div class="wrow"><span class="wl">Week 16</span><span class="wt">Apply to <strong>all Tier 1 companies</strong> — Goodera, Wadhwani AI, Give India, Sattva, Digital Green. IDH PRD link goes in every application.</span></div>
-      <div class="wrow"><span class="wl">Week 21</span><span class="wt">Add <strong>Tier 2 companies</strong> — Jar, Setu, Healthians, Meesho, Zepto. Both portfolio pieces now live.</span></div>
-      <div class="wrow"><span class="wl">Ongoing</span><span class="wt"><strong>Tier 3</strong> — Razorpay APM, CRED, PhonePe. Apply always, expect low conversion. A referral changes the odds completely.</span></div>
-    </div>
-    <p class="sl">Mock interviews</p>
-    <div class="resources">
-      <div class="res"><span class="rtag">adplist.org</span><div><div class="rn">ADPList — free mock interviews</div><div class="rno">Book 1 mock PM interview per month with an actual PM. Free. Gives feedback solo practice can't.</div></div></div>
-      <div class="res"><span class="rtag">YouTube</span><div><div class="rn">Exponent — PM Interview Prep</div><div class="rno">Best free PM interview walkthroughs. Watch product design and metrics videos.</div></div></div>
-      <div class="res"><span class="rtag">YouTube</span><div><div class="rn">TechTello — PM interviews India</div><div class="rno">India-specific. Covers Flipkart, Swiggy, Razorpay interview formats.</div></div></div>
-    </div>
-    <div class="checkpoint"><span class="ci">✓ PASS</span><p class="ct"><strong>Weekly minimum from Week 16:</strong> 2 product design questions out loud · 1 metrics question with SQL query · 2 estimation questions · 2 LinkedIn outreach messages. <strong>1 ADPList mock interview per month.</strong></p></div>
-  </section>
-
-</div>
-
-<section class="companies">
-  <h2>Where to apply — in order</h2>
-  <p class="sec-sub">Tier 1 from Week 16. Tier 2 from Week 21. Tier 3 always open — it's a numbers game, but referrals change the odds.</p>
-  <div class="tier-grid">
-    <div class="tier">
-      <div class="tlbl t1c">⬤ Tier 1 — Best fit, apply first</div>
-      <p class="tdesc">CSR/impact tech — your domain experience is a direct match.</p>
-      <div class="cotags"><span class="co t1c">Goodera</span><span class="co t1c">Give India</span><span class="co t1c">iVolunteer</span><span class="co t1c">Sattva</span><span class="co t1c">Wadhwani AI</span><span class="co t1c">Digital Green</span><span class="co t1c">IDH (direct)</span></div>
-    </div>
-    <div class="tier">
-      <div class="tlbl t2c">⬤ Tier 2 — Funded startups</div>
-      <p class="tdesc">Series A/B companies where AI PM + data background unlocks real salary.</p>
-      <div class="cotags"><span class="co t2c">Jar</span><span class="co t2c">Setu</span><span class="co t2c">Healthians</span><span class="co t2c">Slice</span><span class="co t2c">Zepto</span><span class="co t2c">Meesho</span><span class="co t2c">mFine</span></div>
-    </div>
-    <div class="tier">
-      <div class="tlbl t3c">⬤ Tier 3 — Stretch, always apply</div>
-      <p class="tdesc">Competitive APM programs. Low conversion cold — but a referral changes the maths.</p>
-      <div class="cotags"><span class="co t3c">Razorpay APM</span><span class="co t3c">CRED</span><span class="co t3c">PhonePe</span><span class="co t3c">Swiggy</span><span class="co t3c">Google APM</span></div>
-    </div>
+<!-- ═══ PHASE 1 ═══ -->
+<section><div class="wrap">
+  <div class="phase-head"><div class="pnum">01</div><div>
+    <div class="ptag">build the proof</div><div class="pname">Phase 1 — Build what they can see</div>
+    <div class="pdur"><b>W1–W6 · 24 Nov → 4 Jan</b> · 12 h/week</div>
+  </div></div>
+  <div class="why"><strong>Why this comes first</strong>Your best work is private client work, so to a hiring manager it does not exist. JDs now gate on visible proof — Sun King requires "a GitHub or portfolio of shipped prototypes". One flagship build covers four gaps at once: <b>an AI product, evals, a public portfolio, and the vocabulary</b>.</div>
+  <div class="tbl"><table>
+    <tr><th>Block</th><th>Hours/wk</th><th>Output</th></tr>
+    <tr><td><b>Flagship AI build</b></td><td class="n">5</td><td>working assistant + eval set + case study by W6</td></tr>
+    <tr><td><b>SQL</b> — 30 min × 6 days</td><td class="n">3</td><td>interview-ready by W6</td></tr>
+    <tr><td><b>Story bank</b></td><td class="n">1.5</td><td>8 decision-first stories by W3, then rehearsal</td></tr>
+    <tr><td><b>Outreach</b></td><td class="n">1.5</td><td>6 personal messages a week — ask for 15 minutes, not a job</td></tr>
+    <tr><td><b>Interview drills</b> (from W3)</td><td class="n">1</td><td>the weekly engine starts</td></tr>
+  </table></div>
+  <div class="lbl">week by week</div>
+  <div class="weeks">
+    <div class="wrow"><div class="wl">W1 · 24 Nov</div><div class="wt"><strong>Flagship:</strong> its own short spec + synthetic dataset generated. <strong>SQL:</strong> JOINs, GROUP BY / HAVING refresher. <strong>Stories</strong> 1–3. Product Leaders Day (Sat).</div></div>
+    <div class="wrow"><div class="wl">W2 · 1 Dec</div><div class="wt"><strong>Flagship:</strong> first version answers 10 questions end-to-end. <strong>SQL:</strong> subqueries and CTEs. <strong>Stories</strong> 4–6.</div></div>
+    <div class="wrow"><div class="wl">W3 · 8 Dec</div><div class="wt"><strong>Flagship:</strong> write the 40-question eval set, first full run. <strong>SQL:</strong> window functions — ROW_NUMBER, RANK, LAG, PARTITION BY. <strong>Stories</strong> 7–8, including the failure story. Drills begin.</div></div>
+    <div class="wrow"><div class="wl">W4 · 15 Dec</div><div class="wt"><strong>Flagship:</strong> error analysis → fix the top two failure types → re-run. <strong>SQL:</strong> funnels and retention cohorts. <strong>Mock #1</strong> with a real PM.</div></div>
+    <div class="wrow"><div class="wl">W5 · 22 Dec</div><div class="wt"><strong>Flagship:</strong> cost per question, DPDP note, the "I'm not sure" fallback. <strong>SQL:</strong> timed problems. <strong>Phase 2 opens:</strong> referral asks, work sample #1.</div></div>
+    <div class="wrow"><div class="wl">W6 · 29 Dec</div><div class="wt"><strong>Flagship:</strong> case study page + public repo + 2-minute walkthrough. <strong>SQL checkpoint.</strong> Soft-open applications. <strong>Decision point.</strong></div></div>
   </div>
-</section>
 
-<section class="salary-section">
-  <h2>Salary milestones — honest targets</h2>
-  <p class="sec-sub">Based on India AI PM market data, 2026. The first role's learning environment matters more than the first number.</p>
-  <div class="sal-line">
-    <div class="sr"><span class="st">Month 6–8</span><div class="sdot"></div><div><div class="slpa">₹10–15 LPA</div><div class="snote">First PM or Product Analyst role. Likely Tier 1. Take it even if slightly below target — the title unlocks Tier 2 in 12–18 months.</div></div></div>
-    <div class="sr"><span class="st">Year 1.5–2</span><div class="sdot tl"></div><div><div class="slpa tl">₹18–25 LPA</div><div class="snote">First promotion or move to a Series B company. AI PM tag starts commanding the premium here.</div></div></div>
-    <div class="sr"><span class="st">Year 3–4</span><div class="sdot gr"></div><div><div class="slpa gr">₹30–45 LPA</div><div class="snote">Senior PM at a growth-stage company. Bangalore roles pay 15–25% more. This is the 30–50% AI premium tier.</div></div></div>
-    <div class="sr"><span class="st">Year 5</span><div class="sdot gr"></div><div><div class="slpa gr">₹45–65 LPA</div><div class="snote">Lead PM or Group PM. ESOPs at the right company push total comp past ₹1Cr.</div></div></div>
+  <h3>The story bank — 8 stories, each opening with the decision</h3>
+  <p class="body">Format: <b>Decision</b> → <b>Why</b> (the trade-off you weighed) → <b>What happened</b> (the delta) → <b>What I'd do differently</b>. The last line is what makes it sound senior; it also gives you the AI-behavioural answer ("a decision you'd make differently now").</p>
+  <div class="tbl"><table>
+    <tr><th>#</th><th>Story</th><th>The decision it opens with</th></tr>
+    <tr><td class="n">1</td><td>HDFC dashboard indicators</td><td>The client had no view on what to show — <b>you picked the farm-livelihood indicators</b></td></tr>
+    <tr><td class="n">2</td><td>IDH dashboard to production</td><td>What you chose to ship first, and what you held back</td></tr>
+    <tr><td class="n">3</td><td>Activity-score RCA</td><td>Where you localised the missing scores, and what you sent the developer</td></tr>
+    <tr><td class="n">4</td><td>11 GB dump → 21.6M-row analysis</td><td>Processing locally instead of the obvious route, and why</td></tr>
+    <tr><td class="n">5</td><td>Field research → wireframe → client onboarded</td><td>What you saw in the field that changed the design</td></tr>
+    <tr><td class="n">6</td><td>A client: one project → three</td><td>What you did that made the client come back</td></tr>
+    <tr><td class="n">7</td><td>The verification system for client work</td><td>Adding independent review before delivery — the cost, and what it caught</td></tr>
+    <tr><td class="n">8</td><td><b>A failure</b> (never written down before)</td><td>What you got wrong, how you found out, what changed</td></tr>
+  </table></div>
+  <div class="checkpoint"><span class="ci">✓ W6</span><span class="ct"><strong>Checkpoint.</strong> (1) Flagship case study live with its eval results. (2) A 30-day retention query and a funnel drop-off query, both with CTEs and window functions, each written in under 20 minutes without help. (3) All 8 stories told aloud, no notes. <strong>If something isn't done: cut its scope — don't slip the applications.</strong></span></div>
+</div></section>
+
+<!-- ═══ PHASE 2 ═══ -->
+<section><div class="wrap">
+  <div class="phase-head"><div class="pnum">02</div><div>
+    <div class="ptag">pipeline</div><div class="pname">Phase 2 — Reach people, apply, practise</div>
+    <div class="pdur"><b>W5–W12 · 22 Dec → 15 Feb</b> · soft open 29 Dec · <b>main wave week of 5 Jan</b> (new budgets)</div>
+  </div></div>
+  <div class="why"><strong>Why referrals carry this phase</strong>Across ~1.4 million hires, referred candidates were 1–6% of applicants but <b>18–29% of hires</b>. A referral also routes you past the "3+ years" filter that most junior postings now carry. Cold applications only where the JD matches at least 70%.</div>
+  <div class="tbl"><table>
+    <tr><th>Block</th><th>Hours/wk</th><th>Output</th></tr>
+    <tr><td><b>Applications + referrals</b></td><td class="n">4</td><td>10 outreach · 3 referral asks · 5–8 applications</td></tr>
+    <tr><td><b>Interview engine</b></td><td class="n">5</td><td>see the engine below</td></tr>
+    <tr><td><b>Company work samples</b></td><td class="n">2</td><td>one ~1-page sample for each of your top 5 targets</td></tr>
+    <tr><td><b>SQL upkeep + experiments</b></td><td class="n">1</td><td>one experiment design inside each work sample</td></tr>
+  </table></div>
+  <h3>Company work samples — one page per company</h3>
+  <p class="body">For each top-5 company: a <b>zero-data audit</b> of their product and two rivals (stop at any consent or KYC screen — never enter real data), then one page: <b>the decision I'd make first</b> → the evidence → one experiment with a success metric and a kill line → what I wouldn't do. Framing rule: <b>"how I'd run it", never "what's broken"</b> — someone in that room built it.</p>
+  <div class="checkpoint"><span class="ci">✓ W10</span><span class="ct"><strong>Review (week of 26 Jan).</strong> Fewer than 3 first rounds → shift weight to Lane 3 and to referrals, and get LinkedIn + resume re-read by a PM.</span></div>
+</div></section>
+
+<!-- ═══ PHASE 3 ═══ -->
+<section><div class="wrap">
+  <div class="phase-head"><div class="pnum">03</div><div>
+    <div class="ptag">interviews · offer</div><div class="pname">Phase 3 — Loops, take-homes, the offer</div>
+    <div class="pdur"><b>W12–W20 · 9 Feb → 12 Apr</b> · offer target <b>W17 (mid-March)</b> · buffer to 31 May</div>
+  </div></div>
+  <div class="tbl"><table>
+    <tr><th>Block</th><th>Hours/wk</th><th>Note</th></tr>
+    <tr><td><b>Live interviews + prep</b></td><td class="n">6</td><td>research the company's business model before every round</td></tr>
+    <tr><td><b>Applications + follow-ups</b></td><td class="n">3</td><td>keep the top of the funnel alive until an offer is signed</td></tr>
+    <tr><td><b>Drills</b></td><td class="n">2</td><td>weakest area from the interview log</td></tr>
+    <tr><td><b>Interview log + comp prep</b></td><td class="n">1</td><td>after every round, same day</td></tr>
+  </table></div>
+  <div class="alert"><b>When phases overlap, what gives way.</b> The 12 hours is a hard cap. Order of protection: <b>applications</b> → interview drills → flagship → SQL extras. W5–W6: flagship 4 h (finish only, no new features) · applications 4 · drills 2 · SQL 2. A week with 2+ live loops: drills 0, applications 1.</div>
+
+  <h3>Take-homes — what fails them in 2026</h3>
+  <ul class="list">
+    <li><b>An MVP with every feature.</b> Pick one problem and say what you cut.</li>
+    <li><b>An AI feature with no eval, no cost, no success metric.</b> Your flagship is the template.</li>
+    <li><b>Answering a different question</b> or ignoring the length limit.</li>
+    <li><b>An unrequested prototype</b> — reads as not following instructions. Offer it as a link in one line instead.</li>
+    <li><b>AI-sounding prose you can't defend live.</b> If you wouldn't say it out loud, cut it.</li>
+  </ul>
+
+  <h3>The money conversation</h3>
+  <ul class="list">
+    <li><b>Only answer "expected?" with a prepared anchor / target / floor</b> — they open at the bottom of whatever range you give.</li>
+    <li><b>Always say "fixed"</b> — otherwise they hear CTC.</li>
+    <li><b>Never give a range whose top is your floor.</b></li>
+    <li><b>Title over first salary</b> — the first PM title unlocks the next jump.</li>
+    <li><b>Ask about a notice buyout</b> — product companies often reimburse it.</li>
+  </ul>
+</div></section>
+
+<!-- ═══ INTERVIEW ENGINE ═══ -->
+<section><div class="wrap">
+  <h2>The weekly <span>interview engine</span></h2>
+  <p class="sec-sub">Starts W3, runs until an offer. Interviews in 2026: HR screen → "what did <i>you</i> do" deep-dive → product sense → metrics / RCA → guesstimate → SQL → take-home → business-head round. New this year: live AI-prototyping rounds and AI behavioural questions.</p>
+  <div class="tbl"><table>
+    <tr><th>Drill</th><th>Per week</th><th>What it fixes</th></tr>
+    <tr><td><b>Product sense</b>, out loud — record one every fortnight</td><td class="n">2</td><td>structure</td></tr>
+    <tr><td><b>Metrics / RCA</b> — no solutions until the cause is localised</td><td class="n">2</td><td>jumping to solutions</td></tr>
+    <tr><td><b>Guesstimate</b>, under 5 minutes</td><td class="n">2</td><td>speed under pressure</td></tr>
+    <tr><td><b>Business model of the week</b></td><td class="n">1</td><td>blanking on a business model</td></tr>
+    <tr><td><b>SQL problem</b>, timed</td><td class="n">3</td><td>the SQL gap</td></tr>
+    <tr><td><b>Live AI-prototype narration</b> — a 30-min build, saying each choice aloud (from W5)</td><td class="n">1</td><td>new prototype rounds</td></tr>
+    <tr><td><b>Story rehearsal</b> — two stories, no notes</td><td class="n">2</td><td>"you're being very vague"</td></tr>
+    <tr><td><b>Mock with a real PM</b> (ADPList / Product Folks)</td><td class="n">1 / month</td><td>pressure you can't create alone</td></tr>
+  </table></div>
+
+  <h3>Why "no solutions until it localises" works</h3>
+  <p class="body"><b>The mechanism:</b> every cause has a reach. A broken payment gateway hits only payers; an Android release hits only Android. So when you cut the drop by platform, region, user type, and step, the place where the drop <b>stops being everywhere</b> is the cause's fingerprint. Solutions proposed before that point are guesses, and interviewers grade the guessing (Groww's reported feedback: "more focused on structure than solution").</p>
+  <p class="body"><b>When it returns nothing</b> — the drop is equally everywhere — that itself is the answer: look for something with total reach: tracking broke, a holiday, a sitewide outage, a definition change. <b>The analogy:</b> a doctor pressing different parts of your stomach. Where it hurts tells them more than any theory.</p>
+
+  <h3>Business model of the week — the template</h3>
+  <p class="body">Five lines, under two minutes: <b>who pays</b> · <b>for what</b> · <b>how often</b> · <b>the unit-economics line</b> (what one user is worth vs what one costs) · <b>one risk</b>. Then one stretch question: "why is it worth ₹X?" Example: Reddit — ~80% advertising, a fast-growing data-licensing line selling its conversations to AI companies, a small subscription line; the risk is that AI answers cut the search traffic that brings readers in.</p>
+  <div class="cos" style="margin-bottom:1.3rem">
+    <span class="co">Reddit</span><span class="co">PhonePe</span><span class="co">Paytm</span><span class="co">Groww</span><span class="co">Zerodha</span><span class="co">CRED</span><span class="co">Razorpay</span><span class="co">Paisabazaar</span><span class="co">Policybazaar</span><span class="co">Navi</span><span class="co">Jar</span><span class="co">Zepto</span><span class="co">Swiggy</span><span class="co">Meesho</span><span class="co">Freshworks</span><span class="co">Sarvam</span><span class="co">OpenAI</span><span class="co">Duolingo</span><span class="co">LinkedIn</span><span class="co">Spotify</span>
   </div>
-</section>
+
+  <h3>Real questions reported in 2025–26 to practise on</h3>
+  <ul class="list">
+    <li><b>Product:</b> design onboarding for your favourite product (Razorpay) · improve an existing Meesho product (take-home) · pick a service you use and add a feature (Groww)</li>
+    <li><b>RCA:</b> Swiggy order value declined · increase Zepto's cart order rate · increase Zepto's AOV</li>
+    <li><b>Guesstimate:</b> cups of tea drunk in Bengaluru a day (Swiggy) · value Razorpay processes in a day</li>
+    <li><b>Business:</b> why might PhonePe be worth ~$9bn? (Razorpay) · discount vs more trips — which wins? (CRED)</li>
+    <li><b>AI:</b> users say the assistant is confident but wrong — fix it · how do you measure if an LLM feature is working? · design safeguards for an AI that acts on a user's behalf · an AI decision you'd make differently now</li>
+  </ul>
+</div></section>
+
+<!-- ═══ LANES ═══ -->
+<section><div class="wrap">
+  <h2>Three lanes, <span>one pipeline</span></h2>
+  <p class="sec-sub">Effort ~45 / 35 / 20. Re-weight at the W10 review. Companies below are from the JDs read on 17 Nov — postings open and close, so re-check each before applying.</p>
+  <div class="grid">
+    <div class="card"><span class="tag ok">Lane 1 · ~45%</span><h4>APM / PM I</h4>Series B–D fintech and B2B SaaS. Your client-facing delivery + data, and a fintech final round already behind you.
+      <div class="cos"><span class="co">Groww</span><span class="co">Navi</span><span class="co">Juspay</span><span class="co">FourKites (India remote)</span><span class="co">HyperVerge</span><span class="co">M2P</span><span class="co">Tap Invest</span><span class="co">SpotDraft</span></div></div>
+    <div class="card"><span class="tag mid">Lane 2 · ~35%</span><h4>AI-builder PM</h4>AI-native startups that want prototypes and evals. Your strongest edge — this is where the flagship does the talking.
+      <div class="cos"><span class="co">YoYo AI</span><span class="co">RoaDo</span><span class="co">Kraftshala</span><span class="co">Ajaia</span><span class="co">GeoIQ</span><span class="co">Credgenics-type</span></div></div>
+    <div class="card"><span class="tag" style="color:var(--teal)">Lane 3 · ~20%</span><h4>Side door</h4>Deployment, implementation and impact-tech roles — a description of your current job. Often ask 4+ years; referrals matter most here.
+      <div class="cos"><span class="co">Sarvam (Deployment Strategist)</span><span class="co">Rocketlane</span><span class="co">ElevenLabs</span><span class="co">Sun King APM (India remote)</span><span class="co">Noora Health</span><span class="co">Wadhwani AI</span></div></div>
+  </div>
+  <div class="alert"><b>Skip:</b> remote USD-paid junior PM roles (YC's remote PM list was 10 of 10 US-only) and big-tech APM programmes (~40 seats for ~8,000 applicants). <b>Watch for:</b> degree filters (your B.Tech clears them), "APM" titles that ask 5–7 years in the body, and stale or ghost postings — prefer anything under 30 days old.</div>
+</div></section>
+
+<!-- ═══ SKILLS ═══ -->
+<section><div class="wrap">
+  <h2>The skills — <span>to what bar</span>, from where</h2>
+  <p class="sec-sub">Every skill has a pass/fail bar. If you can't pass it, you don't have it yet — no matter how many videos you've watched. All resources are free.</p>
+
+  <h3>1 · SQL <span style="color:var(--dim);font-weight:400">— 57% of JDs</span></h3>
+  <div class="checkpoint"><span class="ci">BAR</span><span class="ct">30-day retention and funnel drop-off, with CTEs and window functions, each in under 20 minutes.</span></div>
+  <div class="res"><span class="rtag">tutorial</span><div><div class="rn">Mode SQL Tutorial</div><div class="rno">Product-shaped datasets. Weeks 1–3.</div></div></div>
+  <div class="res"><span class="rtag">practice</span><div><div class="rn">LeetCode SQL 50 · DataLemur</div><div class="rno">One timed problem a day from W3. DataLemur has real product-company questions.</div></div></div>
+
+  <h3>2 · Evals <span style="color:var(--dim);font-weight:400">— ~20% and rising fastest</span></h3>
+  <p class="body"><b>The mechanism:</b> a normal test checks that 2+2 always gives 4. An AI gives a slightly different answer every time, so you can't test one answer — you test a <b>set of realistic questions</b> and count how often it's right, and <b>how</b> it's wrong. The counting by type is the important part: "12 of 40 failed" tells you nothing; "7 failed because it summed a column that should be averaged" tells you exactly what to fix. <b>The analogy:</b> a teacher who marks a mock exam by mistake type, not by score.</p>
+  <div class="checkpoint"><span class="ci">BAR</span><span class="ct">The flagship's 40-question eval set, an error analysis by failure type, a ship threshold, and a before/after re-run.</span></div>
+  <div class="res"><span class="rtag">read first</span><div><div class="rn"><a href="https://hamel.dev/blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">Hamel Husain — evals FAQ: error analysis</a></div><div class="rno">Start here. Read outputs, tag failures, count.</div></div></div>
+  <div class="res"><span class="rtag">article</span><div><div class="rn"><a href="https://www.lennysnewsletter.com/p/building-eval-systems-that-improve" target="_blank" rel="noopener">Lenny's — Building eval systems that improve your AI product</a></div><div class="rno">Husain & Shankar. Where "evals are the new spec" comes from.</div></div></div>
+  <div class="res"><span class="rtag">course</span><div><div class="rn"><a href="https://www.deeplearning.ai/short-courses/" target="_blank" rel="noopener">DeepLearning.AI — Evaluating AI Agents</a></div><div class="rno">~2.5 h, free.</div></div></div>
+
+  <h3>3 · Agents and the AI vocabulary <span style="color:var(--dim);font-weight:400">— 57%</span></h3>
+  <div class="checkpoint"><span class="ci">BAR</span><span class="ct">Explain your own Claude work using agents, tools, context, skills, MCP and cost per task — without notes, in under two minutes.</span></div>
+  <div class="res"><span class="rtag">read</span><div><div class="rn"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">Anthropic — Building effective agents</a></div><div class="rno">Workflows vs agents; when not to use an agent.</div></div></div>
+  <div class="res"><span class="rtag">read</span><div><div class="rn"><a href="https://www.lennysnewsletter.com/p/how-top-pms-increase-their-leverage" target="_blank" rel="noopener">Colin Matthews — how top PMs increase their leverage</a></div><div class="rno">Jun 2026. The PM-as-builder ladder. You're already on rung two.</div></div></div>
+  <div class="res"><span class="rtag">course</span><div><div class="rn"><a href="https://www.deeplearning.ai/short-courses/" target="_blank" rel="noopener">DeepLearning.AI — MCP with Anthropic</a></div><div class="rno">~90 min, free.</div></div></div>
+  <div class="res"><span class="rtag">video</span><div><div class="rn">Karpathy — Intro to Large Language Models</div><div class="rno">Kept from June — still the best one-hour foundation.</div></div></div>
+
+  <h3>4 · Prototyping in an interview <span style="color:var(--dim);font-weight:400">— 52%, your edge</span></h3>
+  <p class="body">They don't grade the code. They grade <b>judgment while building</b>: deciding what to build before touching the tool, pushing back on the AI's first output, naming edge cases. Failure: jumping straight into building, and accepting the first answer.</p>
+  <div class="checkpoint"><span class="ci">BAR</span><span class="ct">A 30-minute build, narrated aloud, where you reject or change the AI's first output at least once and say why.</span></div>
+  <div class="res"><span class="rtag">guide</span><div><div class="rn"><a href="https://www.news.aakashg.com/p/vibe-coding-interviews-for-pms-complete" target="_blank" rel="noopener">Aakash Gupta — vibe-coding interviews for PMs</a></div><div class="rno">Jul 2026. Format and how it's graded.</div></div></div>
+  <div class="res"><span class="rtag">guide</span><div><div class="rn"><a href="https://www.lennysnewsletter.com/p/make-product-management-fun-again" target="_blank" rel="noopener">Lenny's — AI prototyping for PMs</a></div></div></div>
+
+  <h3>5 · Experimentation <span style="color:var(--dim);font-weight:400">— 35%</span></h3>
+  <p class="body"><b>The mechanism:</b> show the change to half the users and compare. The trap is noise — small differences happen by chance. <b>Smaller effects need far more users to see</b> — and it's squared: an effect 10× smaller needs roughly 100× the users. That's why a low-traffic page can't test a tiny tweak. That's why you always say up front what lift you're looking for, and add a <b>guardrail</b> metric that must not get worse.</p>
+  <div class="checkpoint"><span class="ci">BAR</span><span class="ct">One experiment written for each work sample: hypothesis · primary metric · guardrail · rough sample-size reasoning · kill line.</span></div>
+
+  <h3>6 · Product sense, metrics, business models</h3>
+  <div class="res"><span class="rtag">bank</span><div><div class="rn"><a href="https://www.theproductfolks.com/product-management-blog/product-manager-case-study-interview-frameworks-50-questions" target="_blank" rel="noopener">The Product Folks — 50 case questions</a></div></div></div>
+  <div class="res"><span class="rtag">bank</span><div><div class="rn"><a href="https://www.aced.io/blog/ai-product-manager-interview-questions" target="_blank" rel="noopener">Exponent (aced.io) — AI PM questions</a></div></div></div>
+  <div class="res"><span class="rtag">guide</span><div><div class="rn"><a href="https://www.news.aakashg.com/p/ai-pm-interview-guide-2026" target="_blank" rel="noopener">Aakash Gupta — AI PM interview guide 2026</a></div></div></div>
+  <div class="res"><span class="rtag">guide</span><div><div class="rn"><a href="https://www.aakashg.com/how-to-ace-pm-interview-homework-in-the-age-of-ai-with-sumant-malhotra/" target="_blank" rel="noopener">Take-homes in the age of AI</a></div><div class="rno">Oct 2026.</div></div></div>
+
+  <h3>7 · One analytics tool</h3>
+  <p class="body">Instrument the flagship with <b>PostHog</b> (free tier). One funnel and one retention chart on your own product is enough to say "I've used it" honestly.</p>
+</div></section>
+
+<!-- ═══ FLAGSHIP ═══ -->
+<section><div class="wrap">
+  <h2>The flagship — <span>an assistant that answers programme questions</span></h2>
+  <p class="sec-sub">A programme manager types a plain-English question about a CSR livelihood programme — farmers, villages, trainings, indicators, scores — and gets the answer with the numbers and the query shown.</p>
+  <div class="why"><strong>Why this one</strong>It's your domain, so you know what the real questions are and what a wrong answer costs. A written spec alone is now the weak form of an AI portfolio piece. The strong form is <b>a working prototype + eval set + error analysis + cost</b> — and building is the part you're already good at.</div>
+  <div class="lbl">must ship with</div>
+  <div class="checks">
+    <label class="check"><input type="checkbox" data-k="f-1"><span>Synthetic dataset, generated by script<small>Shaped like your real work. No client names, no real records, no screenshots of client systems.</small></span></label>
+    <label class="check"><input type="checkbox" data-k="f-2"><span>40-question eval set<small>The kinds of questions programme managers really ask — including ones it should refuse or flag.</small></span></label>
+    <label class="check"><input type="checkbox" data-k="f-3"><span>Error analysis by failure type, and a re-run after fixes</span></label>
+    <label class="check"><input type="checkbox" data-k="f-4"><span>Ship threshold + fallback<small>"I'm not sure — here's the closest table" beats a confident wrong number.</small></span></label>
+    <label class="check"><input type="checkbox" data-k="f-5"><span>Cost per answered question<small>Including retries. API budget cap ₹2,000 total; a small, cheap model.</small></span></label>
+    <label class="check"><input type="checkbox" data-k="f-6"><span>DPDP note<small>What personal data a real deployment would touch, consent, retention. Full DPDP obligations start 13 May 2027.</small></span></label>
+    <label class="check"><input type="checkbox" data-k="f-7"><span>PostHog on the demo</span></label>
+    <label class="check"><input type="checkbox" data-k="f-8"><span>Decision-first case study page + public repo on GitHub Pages<small>Decisions taken, options rejected, what broke. AI tooling shown openly — building with Claude Code is the proof.</small></span></label>
+  </div>
+  <p class="body">Architecture, stack and hosting get decided in the flagship's own short spec in W1.</p>
+</div></section>
+
+<!-- ═══ AI USAGE AUDIT ═══ -->
+<section><div class="wrap">
+  <h2>How you use AI today — <span>and what to change</span></h2>
+  <p class="sec-sub">From ~19 Claude project folders. You're further along than most PM candidates will ever be. The problem is that nobody can see it and you can't yet name it.</p>
+  <div class="grid">
+    <div class="card"><span class="tag ok">already strong</span><h4>Production shipping</h4>Dashboards through reviewed pull requests, verified live.</div>
+    <div class="card"><span class="tag ok">already strong</span><h4>Real RCA on live data</h4>24 sessions tracing missing activity scores to a cause and a fix.</div>
+    <div class="card"><span class="tag ok">already strong</span><h4>Reusable tooling</h4>8 self-built skills; independent review agents before client delivery.</div>
+    <div class="card"><span class="tag ok">already strong</span><h4>Process and cost</h4>Brainstorm → spec → plan → build → prove; token budgeting before expensive work.</div>
+  </div>
+  <div class="tbl"><table>
+    <tr><th>Gap</th><th>Fix in this plan</th></tr>
+    <tr><td><b>You use AI to build, but haven't built an AI product</b></td><td>The flagship</td></tr>
+    <tr><td><b>All of it is private</b></td><td>Client-safe public proof: flagship + case studies + work samples</td></tr>
+    <tr><td><b>Practice without the vocabulary</b></td><td>The map below + the story bank</td></tr>
+    <tr><td><b>No measured outcomes</b></td><td>The delta log</td></tr>
+  </table></div>
+  <h3>The vocabulary map — what you do → what they call it</h3>
+  <div class="tbl"><table>
+    <tr><th>What you already do</th><th>The name</th><th>How you'd say it</th></tr>
+    <tr><td>Claude runs an independent reviewer before anything goes to a client</td><td>LLM-as-judge / quality gate</td><td>"A second agent checks the first one's work — it's an eval in practice."</td></tr>
+    <tr><td>Your Frappe skills</td><td>Agent skills / context engineering</td><td>"I packaged what the model kept getting wrong into reusable instructions."</td></tr>
+    <tr><td>CLAUDE.md and memory files</td><td>Persistent context</td><td>"The model starts each session knowing the project's rules."</td></tr>
+    <tr><td>Spec → plan → subagents → review</td><td>Agentic workflow with human checkpoints</td><td>"It works on its own between checkpoints; I approve at each one."</td></tr>
+    <tr><td>Estimating tokens before multi-agent work</td><td>Cost per task</td><td>"I check what a run costs before deciding it's worth it."</td></tr>
+    <tr><td>Checking the live dashboard against the build numbers</td><td>Evaluation against ground truth</td><td>"Done means the production number matches the source."</td></tr>
+  </table></div>
+</div></section>
+
+<!-- ═══ CONFIDENCE ═══ -->
+<section><div class="wrap">
+  <h2>Confidence is <span>produced</span>, not waited for</h2>
+  <p class="sec-sub">In past final rounds the knowledge was there. What was missing was answers rehearsed until they came out decision-first under a poker face.</p>
+  <ul class="list">
+    <li><b>Every story rehearsed without notes</b> until the first sentence is always the decision.</li>
+    <li><b>Every number passes the five-second test</b> — if you can't say where it came from, it's cut.</li>
+    <li><b>An interview log after every round, same day:</b> what they asked · what I said · what I'd say now. Now standard after every round.</li>
+    <li><b>One mock a month with a real PM</b> — the only way to practise against someone who isn't on your side.</li>
+    <li><b>The scoreboard</b> shows progress on the weeks that feel like nothing is moving.</li>
+    <li><b>Silence and poker faces are style, not verdict.</b> Read behaviour — what they share, what they ask about next — not warmth.</li>
+  </ul>
+</div></section>
+
+<!-- ═══ SCOREBOARD ═══ -->
+<section><div class="wrap">
+  <h2>Scoreboard and <span>decision points</span></h2>
+  <p class="sec-sub">Fill weekly. Saved in this browser only.</p>
+  <div class="tbl"><table>
+    <tr><th>Metric</th><th>Target</th></tr>
+    <tr><td><b>Outreach sent</b> / reply rate</td><td>10 / week from W5 · ≥20% replies</td></tr>
+    <tr><td><b>Referrals secured</b></td><td>≥8 by W10</td></tr>
+    <tr><td><b>Applications</b></td><td>40+ by W12</td></tr>
+    <tr><td><b>First rounds</b></td><td>≥6 by W10</td></tr>
+    <tr><td><b>Mocks</b></td><td>1 a month</td></tr>
+  </table></div>
+  <div class="tbl score"><table id="score">
+    <tr><th>Week</th><th>Outreach</th><th>Replies</th><th>Referrals</th><th>Applied</th><th>1st rounds</th><th>Mocks</th></tr>
+  </table></div>
+  <div class="tbl"><table>
+    <tr><th>When</th><th>Question</th><th>If no</th></tr>
+    <tr><td class="n">W6 · 29 Dec</td><td>Flagship and SQL checkpoints passed?</td><td>Cut scope. Don't slip applications.</td></tr>
+    <tr><td class="n">W10 · 26 Jan</td><td>3+ first rounds?</td><td>Shift weight to Lane 3 + referrals; get a PM to read LinkedIn and the resume. </td></tr>
+    <tr><td class="n">W16 · 9 Mar</td><td>Any loop in late stage?</td><td>Extend into the May buffer with Lane 3 primary.</td></tr>
+    <tr><td class="n">W20 · 6 Apr</td><td>Offer signed?</td><td>Re-plan with what the log shows. Don't drift.</td></tr>
+  </table></div>
+</div></section>
+
+<!-- ═══ RISKS ═══ -->
+<section><div class="wrap">
+  <h2>Risks</h2>
+  <div class="tbl"><table>
+    <tr><th>Risk</th><th>What you do</th></tr>
+    <tr><td><b>The day job eats the 12 hours</b></td><td>Weekends carry the flagship; drills come in 20-minute units</td></tr>
+    <tr><td><b>The flagship overruns</b></td><td>Hard cut at W6 — ship the evals and case study even if the demo is basic</td></tr>
+    <tr><td><b>The junior bar keeps rising</b> (3+ years asked)</td><td>Lanes 2 and 3, referrals past the filter, "scope over years" postings like SpotDraft's</td></tr>
+    <tr><td><b>Undershooting on pay</b></td><td>Anchor / target / floor written before every loop</td></tr>
+    <tr><td><b>Ghost postings</b></td><td>Referral first; postings under 30 days old</td></tr>
+  </table></div>
+</div></section>
+
+<!-- ═══ SOURCES ═══ -->
+<section><div class="wrap">
+  <h2>Sources</h2>
+  <p class="sec-sub">Research run 17 Nov 2026. <span class="snip">snippet</span> = seen only as a search summary, treat as a lead. Full table with every JD: <code>docs/research/2026-11-17-pm-market-research.md</code>.</p>
+  <div class="lbl">job descriptions</div>
+  <div class="src"><a href="https://job-boards.eu.greenhouse.io/growwreferrals/jobs/4917612101" target="_blank" rel="noopener">Groww APM</a> · <a href="https://job-boards.greenhouse.io/fourkites/jobs/8225854" target="_blank" rel="noopener">FourKites APM</a> · <a href="https://sunking.pinpointhq.com/en/postings/694fa8dc-44d7-4030-9315-735667568424" target="_blank" rel="noopener">Sun King APM</a> · <a href="https://cutshort.io/job/AI-Product-Manager-Bengaluru-Bangalore-Hello-Edge-IhjRwQmG" target="_blank" rel="noopener">YoYo AI PM</a> · <a href="https://apply.workable.com/ajaia/j/28C10B9CD7" target="_blank" rel="noopener">Ajaia PM</a> · <a href="https://careers.kula.ai/sarvam-ai/28847" target="_blank" rel="noopener">Sarvam PM</a> · <a href="https://cutshort.io/job/Associate-Product-Manager-Bengaluru-Bangalore-Tap-Invest-Qbq0Latl" target="_blank" rel="noopener">Tap Invest APM</a> · <a href="https://jobs.spacecapital.com/companies/hyperverge/jobs/86433464-product-manager-associate" target="_blank" rel="noopener">HyperVerge PM Associate</a> · <a href="https://cutshort.io/job/Associate-Product-manager-Bengaluru-Bangalore-RoaDo-10GZxLSd" target="_blank" rel="noopener">RoaDo APM</a></div>
+  <div class="lbl">market and hiring</div>
+  <div class="src"><a href="https://productwithuditi.substack.com/p/what-ai-pm-job-postings-ask-for-in" target="_blank" rel="noopener">AI-PM postings analysis — 2% junior (Oct 2026)</a> · <a href="https://www.ashbyhq.com/talent-trends-report/reports/referrals" target="_blank" rel="noopener">Ashby — referral data</a> · <a href="https://www.careerindia.com/news/india-job-market-2026-ai-ml-hiring-surge-october-report-011-68141.html" target="_blank" rel="noopener">Naukri JobSpeak Oct 2026</a> · <a href="https://www.masaischool.com/blog/business-analyst-to-product-manager-india/" target="_blank" rel="noopener">Junior PM postings sample (30 Oct)</a> · <a href="https://product100x.substack.com/p/10-product-manager-roles-open-in" target="_blank" rel="noopener">10 PM roles open (10 Nov)</a> · <a href="https://www.ycombinator.com/jobs/role/product-manager/remote" target="_blank" rel="noopener">YC remote PM list</a> · <a href="https://www.eicta.iitk.ac.in/knowledge-hub/product-management/associate-product-manager" target="_blank" rel="noopener">APM salary (Glassdoor via EICTA)</a></div>
+  <div class="lbl">interviews</div>
+  <div class="src"><a href="https://www.productleadership.com/zepto-product-manager-interview-questions/" target="_blank" rel="noopener">Zepto loop</a> · <a href="https://www.glassdoor.com/Interview/Groww-Interview-E2549469-RVW91616483.htm" target="_blank" rel="noopener">Groww</a><span class="snip">snippet</span> · <a href="https://www.glassdoor.co.in/Interview/Swiggy-Product-Manager-Interview-Questions-EI_IE952680.0,6_KO7,22.htm" target="_blank" rel="noopener">Swiggy</a><span class="snip">snippet</span> · <a href="https://ambitionbox.com/interviews/razorpay-interview-questions?page=2" target="_blank" rel="noopener">Razorpay</a><span class="snip">snippet</span> · <a href="https://www.lennysnewsletter.com/p/state-of-the-product-job-market-in-ee9" target="_blank" rel="noopener">Lenny's job market report</a></div>
+  <div class="lbl">AI since June · events</div>
+  <div class="src"><a href="https://www.anthropic.com/news" target="_blank" rel="noopener">Anthropic news</a> · <a href="https://www.india-briefing.com/news/india-dpdp-consent-manager-registration-47884.html" target="_blank" rel="noopener">DPDP timeline</a><span class="snip">snippet</span> · <a href="https://www.medianama.com/2026/06/223-sarvam-raises-234-million-ai-unicorn-amid-anthropic-restrictions/" target="_blank" rel="noopener">Sarvam funding</a> · <a href="https://www.productleadersdayindia.org/" target="_blank" rel="noopener">Product Leaders Day India</a> · <a href="https://www.meetup.com/producttank-delhi" target="_blank" rel="noopener">ProductTank Delhi</a> · <a href="https://theproductfolks.com/grabchai" target="_blank" rel="noopener">Product Folks Grabchai</a></div>
+</div></section>
+
+<footer><div class="wrap">Replaces the June 2026 roadmap. · <a href="product-journeys.html">Product journeys catalogue →</a></div></footer>
+
+<script>
+(function () {
+  var t = document.getElementById('score');
+  var cols = ['o', 'r', 'ref', 'a', 'fr', 'm'];
+  for (var w = 1; w <= 20; w++) {
+    var tr = document.createElement('tr');
+    var html = '<td class="n">W' + w + '</td>';
+    cols.forEach(function (c) { html += '<td><input type="number" min="0" data-k="s-' + w + '-' + c + '" aria-label="W' + w + ' ' + c + '"></td>'; });
+    tr.innerHTML = html;
+    t.appendChild(tr);
+  }
+  function get(k) { try { return localStorage.getItem('pm27:' + k); } catch (e) { return null; } }
+  function set(k, v) { try { localStorage.setItem('pm27:' + k, v); } catch (e) {} }
+  document.querySelectorAll('[data-k]').forEach(function (el) {
+    var v = get(el.dataset.k);
+    if (el.type === 'checkbox') { el.checked = v === '1'; el.addEventListener('change', function () { set(el.dataset.k, el.checked ? '1' : '0'); }); }
+    else { if (v !== null) el.value = v; el.addEventListener('input', function () { set(el.dataset.k, el.value); }); }
+  });
+})();
+</script>
+</body>
+</html>
