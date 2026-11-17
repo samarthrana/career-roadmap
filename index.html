@@ -346,46 +346,74 @@
 <!-- ═══ SKILLS ═══ -->
 <section><div class="wrap">
   <h2>The skills — <span>to what bar</span>, from where</h2>
-  <p class="sec-sub">Every skill has a pass/fail bar. If you can't pass it, you don't have it yet — no matter how many videos you've watched. All resources are free.</p>
+  <p class="sec-sub">Where to learn each one: the <a href="#library">Learning library</a> below. Every skill has a pass/fail bar. If you can't pass it, you don't have it yet — no matter how many videos you've watched. All resources are free.</p>
 
   <h3>1 · SQL <span style="color:var(--dim);font-weight:400">— 57% of JDs</span></h3>
   <div class="checkpoint"><span class="ci">BAR</span><span class="ct">30-day retention and funnel drop-off, with CTEs and window functions, each in under 20 minutes.</span></div>
-  <div class="res"><span class="rtag">tutorial</span><div><div class="rn">Mode SQL Tutorial</div><div class="rno">Product-shaped datasets. Weeks 1–3.</div></div></div>
-  <div class="res"><span class="rtag">practice</span><div><div class="rn">LeetCode SQL 50 · DataLemur</div><div class="rno">One timed problem a day from W3. DataLemur has real product-company questions.</div></div></div>
 
   <h3>2 · Evals <span style="color:var(--dim);font-weight:400">— ~20% and rising fastest</span></h3>
   <p class="body"><b>The mechanism:</b> a normal test checks that 2+2 always gives 4. An AI gives a slightly different answer every time, so you can't test one answer — you test a <b>set of realistic questions</b> and count how often it's right, and <b>how</b> it's wrong. The counting by type is the important part: "12 of 40 failed" tells you nothing; "7 failed because it summed a column that should be averaged" tells you exactly what to fix. <b>The analogy:</b> a teacher who marks a mock exam by mistake type, not by score.</p>
   <div class="checkpoint"><span class="ci">BAR</span><span class="ct">The flagship's 40-question eval set, an error analysis by failure type, a ship threshold, and a before/after re-run.</span></div>
-  <div class="res"><span class="rtag">read first</span><div><div class="rn"><a href="https://hamel.dev/blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">Hamel Husain — evals FAQ: error analysis</a></div><div class="rno">Start here. Read outputs, tag failures, count.</div></div></div>
-  <div class="res"><span class="rtag">article</span><div><div class="rn"><a href="https://www.lennysnewsletter.com/p/building-eval-systems-that-improve" target="_blank" rel="noopener">Lenny's — Building eval systems that improve your AI product</a></div><div class="rno">Husain & Shankar. Where "evals are the new spec" comes from.</div></div></div>
-  <div class="res"><span class="rtag">course</span><div><div class="rn"><a href="https://www.deeplearning.ai/short-courses/" target="_blank" rel="noopener">DeepLearning.AI — Evaluating AI Agents</a></div><div class="rno">~2.5 h, free.</div></div></div>
 
   <h3>3 · Agents and the AI vocabulary <span style="color:var(--dim);font-weight:400">— 57%</span></h3>
   <div class="checkpoint"><span class="ci">BAR</span><span class="ct">Explain your own Claude work using agents, tools, context, skills, MCP and cost per task — without notes, in under two minutes.</span></div>
-  <div class="res"><span class="rtag">read</span><div><div class="rn"><a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">Anthropic — Building effective agents</a></div><div class="rno">Workflows vs agents; when not to use an agent.</div></div></div>
-  <div class="res"><span class="rtag">read</span><div><div class="rn"><a href="https://www.lennysnewsletter.com/p/how-top-pms-increase-their-leverage" target="_blank" rel="noopener">Colin Matthews — how top PMs increase their leverage</a></div><div class="rno">Jun 2026. The PM-as-builder ladder. You're already on rung two.</div></div></div>
-  <div class="res"><span class="rtag">course</span><div><div class="rn"><a href="https://www.deeplearning.ai/short-courses/" target="_blank" rel="noopener">DeepLearning.AI — MCP with Anthropic</a></div><div class="rno">~90 min, free.</div></div></div>
-  <div class="res"><span class="rtag">video</span><div><div class="rn">Karpathy — Intro to Large Language Models</div><div class="rno">Kept from June — still the best one-hour foundation.</div></div></div>
 
   <h3>4 · Prototyping in an interview <span style="color:var(--dim);font-weight:400">— 52%, your edge</span></h3>
   <p class="body">They don't grade the code. They grade <b>judgment while building</b>: deciding what to build before touching the tool, pushing back on the AI's first output, naming edge cases. Failure: jumping straight into building, and accepting the first answer.</p>
   <div class="checkpoint"><span class="ci">BAR</span><span class="ct">A 30-minute build, narrated aloud, where you reject or change the AI's first output at least once and say why.</span></div>
-  <div class="res"><span class="rtag">guide</span><div><div class="rn"><a href="https://www.news.aakashg.com/p/vibe-coding-interviews-for-pms-complete" target="_blank" rel="noopener">Aakash Gupta — vibe-coding interviews for PMs</a></div><div class="rno">Jul 2026. Format and how it's graded.</div></div></div>
-  <div class="res"><span class="rtag">guide</span><div><div class="rn"><a href="https://www.lennysnewsletter.com/p/make-product-management-fun-again" target="_blank" rel="noopener">Lenny's — AI prototyping for PMs</a></div></div></div>
 
   <h3>5 · Experimentation <span style="color:var(--dim);font-weight:400">— 35%</span></h3>
   <p class="body"><b>The mechanism:</b> show the change to half the users and compare. The trap is noise — small differences happen by chance. <b>Smaller effects need far more users to see</b> — and it's squared: an effect 10× smaller needs roughly 100× the users. That's why a low-traffic page can't test a tiny tweak. That's why you always say up front what lift you're looking for, and add a <b>guardrail</b> metric that must not get worse.</p>
   <div class="checkpoint"><span class="ci">BAR</span><span class="ct">One experiment written for each work sample: hypothesis · primary metric · guardrail · rough sample-size reasoning · kill line.</span></div>
 
   <h3>6 · Product sense, metrics, business models</h3>
-  <div class="res"><span class="rtag">bank</span><div><div class="rn"><a href="https://www.theproductfolks.com/product-management-blog/product-manager-case-study-interview-frameworks-50-questions" target="_blank" rel="noopener">The Product Folks — 50 case questions</a></div></div></div>
-  <div class="res"><span class="rtag">bank</span><div><div class="rn"><a href="https://www.aced.io/blog/ai-product-manager-interview-questions" target="_blank" rel="noopener">Exponent (aced.io) — AI PM questions</a></div></div></div>
-  <div class="res"><span class="rtag">guide</span><div><div class="rn"><a href="https://www.news.aakashg.com/p/ai-pm-interview-guide-2026" target="_blank" rel="noopener">Aakash Gupta — AI PM interview guide 2026</a></div></div></div>
-  <div class="res"><span class="rtag">guide</span><div><div class="rn"><a href="https://www.aakashg.com/how-to-ace-pm-interview-homework-in-the-age-of-ai-with-sumant-malhotra/" target="_blank" rel="noopener">Take-homes in the age of AI</a></div><div class="rno">Oct 2026.</div></div></div>
 
   <h3>7 · One analytics tool</h3>
   <p class="body">Instrument the flagship with <b>PostHog</b> (free tier). One funnel and one retention chart on your own product is enough to say "I've used it" honestly.</p>
 </div></section>
+
+<!-- LIBRARY:START -->
+<section id="library"><div class="wrap">
+  <h2>Learning library — <span>only the best</span></h2>
+  <p class="sec-sub">One source per need, two only where one teaches and one is for practice. All free, all checked working on 17 Nov 2026. The tag says when in the plan to use it.</p>
+  <div class="lbl">SQL</div>
+  <div class="res"><span class="rtag">W1–W3</span><div><div class="rn"><a href="https://www.thoughtspot.com/sql-tutorial" target="_blank" rel="noopener">Mode SQL Tutorial (now hosted by ThoughtSpot)</a></div><div class="rno">Learn: the best free SQL course built on product-style data, through window functions.</div></div></div>
+  <div class="res"><span class="rtag">W3 on</span><div><div class="rn"><a href="https://datalemur.com/sql-tutorial" target="_blank" rel="noopener">DataLemur</a></div><div class="rno">Practise: real product-company SQL questions — funnels, retention, window functions. One a day.</div></div></div>
+  <div class="lbl">PRDs</div>
+  <div class="res"><span class="rtag">W1</span><div><div class="rn"><a href="https://www.lennysnewsletter.com/p/prds-1-pagers-examples" target="_blank" rel="noopener">Lenny&#x27;s — PRD and one-pager examples</a></div><div class="rno">Real PRDs from real companies. Pick one structure and use it for the flagship and work samples.</div></div></div>
+  <div class="lbl">Product sense</div>
+  <div class="res"><span class="rtag">W3 on</span><div><div class="rn"><a href="https://www.theproductfolks.com/product-management-blog/product-manager-case-study-interview-frameworks-50-questions" target="_blank" rel="noopener">The Product Folks — 50+ case questions</a></div><div class="rno">The weekly practice bank, Indian companies included.</div></div></div>
+  <div class="lbl">Metrics</div>
+  <div class="res"><span class="rtag">W2</span><div><div class="rn"><a href="https://www.lennysnewsletter.com/p/choosing-your-north-star-metric" target="_blank" rel="noopener">Lenny&#x27;s — choosing your north star metric</a></div><div class="rno">How real companies pick the one metric. Use it in every work sample and RCA answer.</div></div></div>
+  <div class="lbl">Guesstimates</div>
+  <div class="res"><span class="rtag">W3 on</span><div><div class="rn"><a href="https://igotanoffer.com/blogs/product-manager/estimation-interview-questions" target="_blank" rel="noopener">IGotAnOffer — estimation questions</a></div><div class="rno">Method plus worked examples; do two a week under 5 minutes.</div></div></div>
+  <div class="lbl">Business models &amp; RCA cases</div>
+  <div class="res"><span class="rtag">W3 on</span><div><div class="rn"><a href="https://samarthrana.github.io/career-roadmap/product-journeys.html" target="_blank" rel="noopener">Product journeys catalogue</a></div><div class="rno">Fact-checked business models and failure cases — the source for the weekly business-model drill.</div></div></div>
+  <div class="res"><span class="rtag">monthly</span><div><div class="rn"><a href="https://www.sebi.gov.in/sebiweb/home/HomeAction.do?doListing=yes&amp;sid=3&amp;ssid=15&amp;smid=10" target="_blank" rel="noopener">SEBI — IPO offer documents (DRHPs)</a></div><div class="rno">The primary source on Indian unit economics: read the &#x27;Our Business&#x27; section of one filing a month.</div></div></div>
+  <div class="lbl">Experimentation</div>
+  <div class="res"><span class="rtag">W5–W7</span><div><div class="rn"><a href="https://www.udacity.com/course/ab-testing--ud257" target="_blank" rel="noopener">Udacity — A/B Testing by Google (free)</a></div><div class="rno">Hypothesis, metric, guardrail, sample size — taught by people who run experiments at scale.</div></div></div>
+  <div class="res"><span class="rtag">W5 on</span><div><div class="rn"><a href="https://www.evanmiller.org/ab-testing/sample-size.html" target="_blank" rel="noopener">Evan Miller — sample size calculator</a></div><div class="rno">Put a real number on &#x27;how many users do I need&#x27; in each work sample.</div></div></div>
+  <div class="lbl">Analytics tool</div>
+  <div class="res"><span class="rtag">W4–W5</span><div><div class="rn"><a href="https://posthog.com/tutorials" target="_blank" rel="noopener">PostHog tutorials</a></div><div class="rno">Step-by-step funnels and retention; instrument the flagship with it.</div></div></div>
+  <div class="lbl">Evals</div>
+  <div class="res"><span class="rtag">W3</span><div><div class="rn"><a href="https://hamel.dev/blog/posts/evals-faq/why-is-error-analysis-so-important-in-llm-evals-and-how-is-it-performed.html" target="_blank" rel="noopener">Hamel Husain — evals FAQ: error analysis</a></div><div class="rno">The clearest practical guide. Read before writing the 40-question set.</div></div></div>
+  <div class="res"><span class="rtag">W3–W4</span><div><div class="rn"><a href="https://www.anthropic.com/research/demystifying-evals-for-ai-agents" target="_blank" rel="noopener">Anthropic — demystifying evals for AI agents</a></div><div class="rno">Task success, graders, regression vs capability evals — the vocabulary interviewers use.</div></div></div>
+  <div class="lbl">Agents &amp; AI basics</div>
+  <div class="res"><span class="rtag">W1</span><div><div class="rn"><a href="https://www.youtube.com/watch?v=zjkBMFhNj_g" target="_blank" rel="noopener">Karpathy — Intro to Large Language Models</a></div><div class="rno">The best one-hour foundation on how LLMs work.</div></div></div>
+  <div class="res"><span class="rtag">W2</span><div><div class="rn"><a href="https://www.anthropic.com/research/building-effective-agents" target="_blank" rel="noopener">Anthropic — building effective agents</a></div><div class="rno">Workflows vs agents, and when not to use one. Map your own Claude work onto it.</div></div></div>
+  <div class="lbl">Flagship build</div>
+  <div class="res"><span class="rtag">W1–W2</span><div><div class="rn"><a href="https://platform.claude.com/docs/en/home" target="_blank" rel="noopener">Claude API docs</a></div><div class="rno">Quickstart, model pricing (for cost per question) and prompt engineering.</div></div></div>
+  <div class="res"><span class="rtag">W1</span><div><div class="rn"><a href="https://faker.readthedocs.io/" target="_blank" rel="noopener">Faker (Python)</a></div><div class="rno">Generate the synthetic programme dataset; seed it so runs repeat.</div></div></div>
+  <div class="lbl">DPDP note</div>
+  <div class="res"><span class="rtag">W5</span><div><div class="rn"><a href="https://prsindia.org/billtrack/digital-personal-data-protection-bill-2023" target="_blank" rel="noopener">PRS India — Digital Personal Data Protection Act, 2023</a></div><div class="rno">Plain-English summary plus the Act&#x27;s text for the flagship&#x27;s DPDP note.</div></div></div>
+  <div class="lbl">Interviews</div>
+  <div class="res"><span class="rtag">W5</span><div><div class="rn"><a href="https://www.news.aakashg.com/p/vibe-coding-interviews-for-pms-complete" target="_blank" rel="noopener">Aakash Gupta — vibe-coding interviews for PMs</a></div><div class="rno">How live AI-prototyping rounds run and how they&#x27;re graded.</div></div></div>
+  <div class="res"><span class="rtag">before first take-home</span><div><div class="rn"><a href="https://www.aakashg.com/how-to-ace-pm-interview-homework-in-the-age-of-ai-with-sumant-malhotra/" target="_blank" rel="noopener">How to ace PM take-homes in the age of AI</a></div><div class="rno">What fails a take-home in 2026. Read before your first one.</div></div></div>
+  <div class="res"><span class="rtag">Dec, Jan, Feb, Mar</span><div><div class="rn"><a href="https://adplist.org/" target="_blank" rel="noopener">ADPList — free mock interviews</a></div><div class="rno">One mock with a real PM every month.</div></div></div>
+  <div class="lbl">Negotiation</div>
+  <div class="res"><span class="rtag">before W10</span><div><div class="rn"><a href="https://www.kalzumeus.com/2012/01/23/salary-negotiation/" target="_blank" rel="noopener">Patrick McKenzie — salary negotiation</a></div><div class="rno">The classic on anchoring and not naming the first number. Read before W10.</div></div></div>
+</div></section>
+<!-- LIBRARY:END -->
 
 <!-- ═══ FLAGSHIP ═══ -->
 <section><div class="wrap">
